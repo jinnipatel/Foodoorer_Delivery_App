@@ -11,6 +11,8 @@ export const Color = {
   WHITE: '#FFFFFF',
   BLACK: '#000000',
   LIGHT_GRAY: '#e3dede',
+ 
+  LIME_Green:"#00FA9A",
 
   //label
   GAINSBORO: '#dddddd',

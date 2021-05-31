@@ -16,8 +16,9 @@ export function DrawerContent(props) {
         style={{flex: 1, flexDirection: 'row', marginTop: 50, marginLeft: 20}}>
         <Avatar.Image
           source={require('../../../assets/Img/profile_logo.png')}
+          size={80}
         />
-        <View style={{marginLeft: 15}}>
+        <View style={{marginLeft: 10}}>
           <Title style={{fontSize: 20, color: Color.WHITE}}>JOHN DOE</Title>
           <Caption style={{fontSize: 16, color: Color.WHITE}}>
             driverone@gmail.com
@@ -39,7 +40,7 @@ export function DrawerContent(props) {
             icon={() => (
               <Icon name="home-outline" color={Color.PRIMARY_DARK} size={30} />
             )}
-            label="Dashboard"
+            label="Home"
             labelStyle={{fontSize: 20, color: Color.PRIMARY_DARK}}
           />
           <DrawerItem
@@ -50,6 +51,14 @@ export function DrawerContent(props) {
             labelStyle={{fontSize: 20, color: Color.PRIMARY_DARK}}
             onPress={() => props.navigation.navigate(Routes.Profile)}
           />
+          <DrawerItem 
+           icon = {()=>(
+             <Icon name="file-document-edit-outline" color={Color.PRIMARY_DARK} size={30}/>
+           )} 
+           label="OrderDetails"
+           labelStyle = {{fontSize:20,color:Color.PRIMARY_DARK}}
+           onPress={()=>props.navigation.navigate(Routes.OderDetails)}/>
+          
           <DrawerItem
             icon={() => (
               <Icon
@@ -60,6 +69,7 @@ export function DrawerContent(props) {
             )}
             label="Documents"
             labelStyle={{fontSize: 20, color: Color.PRIMARY_DARK}}
+            onPress={()=>props.navigation.navigate(Routes.DocumentScreen)}
           />
           <DrawerItem
             icon={() => (

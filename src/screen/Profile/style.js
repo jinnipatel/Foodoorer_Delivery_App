@@ -4,7 +4,7 @@ import {Color, ThemeUtils} from '../../utils';
 const Styles = StyleSheet.create({
   MainConatiner: {
     flex: 1,
-    backgroundColor: Color.PRIMARY,
+    // backgroundColor: Color.PRIMARY,
   },
   HeaderContainer: {
     flex: 2,
@@ -12,23 +12,25 @@ const Styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    width: ThemeUtils.relativeWidth(33),
-    height: ThemeUtils.relativeHeight(20),
+    // marginTop:25,
+    width: ThemeUtils.relativeWidth(25),
+    height: ThemeUtils.relativeHeight(15),
   },
   MainFooterContainer: {
     flex: 5,
   },
   subContainer: {
     flex: 2,
-    backgroundColor: Color.ALICE_BLUE,
+    // backgroundColor: Color.ALICE_BLUE,
+    backgroundColor:Color.PRIMARY,
     borderTopEndRadius: 20,
     borderTopStartRadius: 20,
   },
-  MainView: {
-    marginTop: 25,
-  },
+  // MainView: {
+  //   marginTop: 25,
+  // },
   subView: {
-    margin: 10,
+    margin:10,
   },
 });
 

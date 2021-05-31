@@ -6,9 +6,9 @@ const styles = StyleSheet.create({
   container: {
     height: ThemeUtils.relativeHeight(10),
     width: ThemeUtils.relativeWidth(100),
-    backgroundColor: Color.PRIMARY,
-    borderBottomStartRadius: 20,
-    borderBottomEndRadius: 20,
+    backgroundColor: Color.LIME_Green,
+    // borderBottomStartRadius: 20,
+    // borderBottomEndRadius: 20,
   },
   subContainer: {
     marginTop: 20,

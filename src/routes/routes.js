@@ -1,3 +1,5 @@
+
+
 const Routes = {
   Authenticated: 'Authenticated',
   NotAuthenticated: 'NotAuthenticated',
@@ -11,6 +13,13 @@ const Routes = {
   OtpScreen: 'OtpScreen',
   ResetPassword: 'ResetPassword',
   Profile: 'Profile',
+  DocumentScreen:'DocumentScreen',
+  OderDetails:'OderDetails',
+  TotalOrderScreen:'TotalOrderScreen',
+  CancelledOrderScreen:'CancelledOrderScreen',
+  RestaurantMapScreen:'RestaurantMapScreen',
+  CustomerMapScreen:'CustomerMapScreen',
+  EarningScreen:'EarningScreen'
 };
 
 export default Routes;

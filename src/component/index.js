@@ -10,7 +10,9 @@ import IconButton from './ui/IconButton/index';
 import ImageComp from './ui/ImageComp/index';
 import Status from './ui/Status/index';
 import DrawerComponent from './ui/Drawer/index';
-import Card from './ui/Card/index'
+import Card from './ui/Card/index';
+import SearchBar from './ui/SearchBar/index'
+import TopNav from './ui/TopNav/index'
 
 export {
   PickerExample,
@@ -26,4 +28,6 @@ export {
   Status,
   DrawerComponent,
   Card,
+  SearchBar,
+  TopNav
 };

@@ -37,6 +37,12 @@ const Style = StyleSheet.create({
         borderBottomColor:"#62b34c",
         width:'40%',
         paddingBottom:10,
+     },
+     order_details_border:{
+        borderBottomWidth:4,
+        borderBottomColor:"#62b34c",
+        width:'25%',
+        paddingBottom:10
      }
 });
 export default Style;
