@@ -6,9 +6,11 @@ import MapView from 'react-native-maps';
 import {Marker} from 'react-native-maps';
 import {Button, Card, Label, SocialButton} from '../../component';
 import Routes from '../../routes/routes';
-import {Color} from '../../utils';
+import {Color, ThemeUtils} from '../../utils';
 import RadioButtonRN from 'radio-buttons-react-native';
 import { SocialIcon } from 'react-native-elements/dist/social/SocialIcon';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 const data = [
 {
@@ -32,6 +34,7 @@ export class CustomerMapScreen extends Component {
     this.state = {
       show:true,
       modelshow: false,
+      doneModelShow:false
     };
   }
 
@@ -125,7 +128,7 @@ export class CustomerMapScreen extends Component {
 
              
                <Modal  visible={this.state.modelshow} transparent={true}>
-                   <View style={{backgroundColor:"#000000aa"}}>
+                   <View style={{backgroundColor:"#000000aa",flex:1,justifyContent:'center'}}>
                        <View style={{margin:25,padding:25,backgroundColor:"#ffffff" ,borderRadius:10}}>
                           <Label xlarge>Select Reason For Calling</Label>
                            <View style={{marginTop:10}}>
@@ -146,15 +149,31 @@ export class CustomerMapScreen extends Component {
                     <SocialButton
                       btntext="Finish"
                       onPress={() =>
-                        this.props.navigation.navigate(Routes.EarningScreen)
+                        this.setState({doneModelShow:true})
                       }
-                      source={require('../../assets/Img/right_logo.jpeg')}
+                      source={require('../../assets/Img/right_logo.png')}
                     />
                   </View>
                 </View>
               </View>
             </View>
           </Modal>
+
+
+               <Modal  visible={this.state.doneModelShow} transparent={true} >
+                   <View style={{backgroundColor:"#000000aa",flex:1,justifyContent:'center',alignItems:'center'}}>
+                    <View style={{height:ThemeUtils.relativeHeight(50),backgroundColor:Color.BOX_BG,width:ThemeUtils.relativeWidth(90),alignItems:'center',marginHorizontal:30,borderRadius:14,borderRadius:20}}>
+                     <Icon name='thumbs-up' size={65} style={{marginTop:40}} color={Color.PRIMARY}/>       
+                     <Label mt={10} xlarge color={Color.PRIMARY_DARK}>Order Delivered Sucessfully</Label>
+                     <Label mt={20} large>$50</Label>
+                     <Label mt={20} large >Earned by you!</Label>
+                     <View style={{marginTop:10}}>
+                     <SocialButton  btntext="Done" source={require('../../assets/Img/right_logo.png')} onPress={()=>{this.props.navigation.push(Routes.Home)}} />
+                     </View>
+                     </View>
+                   </View>
+               </Modal>
+
         </View>
       </View>
     );

@@ -52,6 +52,7 @@ export class CancelledOrderScreen extends Component {
                 OrderId: 'ORD12456789',
                 TotalItem: 'Deal 1 Burger & 7up Regular 250ml',
                 Location: '11/B , Vesu surat-396450',
+                date:"jan 20,2020"
               },
               {
                 id: 2,
@@ -62,6 +63,7 @@ export class CancelledOrderScreen extends Component {
                 //   image:require("../../assets/Img/jay.png"),
                 TotalItem: 'Deal 1 Burger & 7up Regular 250ml',
                 Location: '11/B , Vesu surat-396450',
+                date:"jan 20,2020"
               },
               {
                 id: 3,
@@ -71,6 +73,7 @@ export class CancelledOrderScreen extends Component {
                 OrderId: 'ORD12456789',
                 TotalItem: 'Deal 1 Burger & 7up Regular 250ml',
                 Location: '11/B , Vesu surat-396450',
+                date:"jan 20,2020"
               },
               {
                 id: 4,
@@ -80,6 +83,7 @@ export class CancelledOrderScreen extends Component {
                 OrderId: 'ORD12456789',
                 TotalItem: 'Deal 1 Burger & 7up Regular 250ml',
                 Location: '11/B , Vesu surat-396450',
+                date:"jan 20,2020"
               },
               {
                 id: 5,
@@ -89,6 +93,7 @@ export class CancelledOrderScreen extends Component {
                 OrderId: 'ORD12456789',
                 TotalItem: 'Deal 1 Burger & 7up Regular 250ml',
                 Location: '11/B , Vesu surat-396450',
+                date:"jan 20,2020"
               },
               {
                 id: 6,
@@ -98,6 +103,7 @@ export class CancelledOrderScreen extends Component {
                 OrderId: 'ORD12456789',
                 TotalItem: 'Deal 1 Burger & 7up Regular 250ml',
                 Location: '11/B , Vesu surat-396450',
+                date:"jan 20,2020"
               },
             ]}
             renderItem={({item}) => (
@@ -131,16 +137,17 @@ export class CancelledOrderScreen extends Component {
                       }}
                     />
                     <View style={{marginTop: 10}}>
-                      <Label ms={20} mt={10} large>
+                      <Label ms={20} mt={10} large color={Color.PRIMARY_DARK}>
                         {item.OrderId}
                       </Label>
-                      <Label ms={20} mt={10} small>
+                      <Label ms={20} mt={10} small color={Color.DARK_GRAY}>
                         {item.TotalItem}
                       </Label>
-                      <Label ms={20} mt={10} small>
+                      <Label ms={20} mt={10} small  color={Color.DARK_GRAY} >
                         {item.Location}
                       </Label>
                       <View style={{flexDirection:'row'}}>
+                       <Label ms={20} mt={10} small  color={Color.PRIMARY_DARK}>{item.date}</Label> 
                       <Image source={item.icon} style={{
                         width: 50,
                         height: 50,

@@ -3,8 +3,8 @@ import {ThemeUtils} from '../../../utils';
 
 export const Styles = StyleSheet.create({
   card: {
-    height: ThemeUtils.relativeHeight(20),
-    width: ThemeUtils.relativeWidth(40),
+    height: ThemeUtils.relativeHeight(25),
+    width: ThemeUtils.relativeWidth(100),
     borderRadius: 10,
     backgroundColor: '#fff',
     elevation: 15,
@@ -13,11 +13,14 @@ export const Styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 2,
     shadowColor: '#000',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
   img: {
-    width: ThemeUtils.relativeHeight(3.6),
-    height: ThemeUtils.relativeHeight(6),
+    width: ThemeUtils.relativeHeight(10),
+    height: ThemeUtils.relativeHeight(10),
+    marginLeft:20,
+    marginTop:20
+    
   },
 });

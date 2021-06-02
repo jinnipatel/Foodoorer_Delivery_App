@@ -11,7 +11,7 @@ const Tab = createMaterialTopTabNavigator();
 export default function TopNav() {
     return (
         <Tab.Navigator>
-            <Tab.Screen name="Deliverd" component={OrderDetails}/>
+            <Tab.Screen name="Delivered" component={OrderDetails}/>
             <Tab.Screen name="Cancelled" component={CancelledOrderScreen}/>
             <Tab.Screen name="Total" component={TotalOrderScreen}/>
         </Tab.Navigator> 

@@ -3,7 +3,7 @@ import {Color, ThemeUtils} from '../../utils';
 
 const Styles = StyleSheet.create({
   MainConatiner: {
-    flex: 1,
+    // flex: 1,
     // backgroundColor: Color.PRIMARY,
   },
   HeaderContainer: {
@@ -11,10 +11,24 @@ const Styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  labelText:{
+    flexDirection: 'row',
+    marginTop: 20,
+    marginHorizontal: 10,
+    padding: 20,
+    marginLeft:50
+  },
+  sectionline:{
+    height: 2,
+    width: '100%',
+    backgroundColor: Color.DARK_GRAY,
+  },
   image: {
-    // marginTop:25,
-    width: ThemeUtils.relativeWidth(25),
-    height: ThemeUtils.relativeHeight(15),
+   
+    // alignSelf:'flex-end',
+    // marginRight:50,
+    width: ThemeUtils.relativeWidth(37),
+    height: ThemeUtils.relativeHeight(20),
   },
   MainFooterContainer: {
     flex: 5,

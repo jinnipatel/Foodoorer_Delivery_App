@@ -19,7 +19,11 @@ const Routes = {
   CancelledOrderScreen:'CancelledOrderScreen',
   RestaurantMapScreen:'RestaurantMapScreen',
   CustomerMapScreen:'CustomerMapScreen',
-  EarningScreen:'EarningScreen'
+  EarningScreen:'EarningScreen',
+  DaliyEarning:'DaliyEarning',
+  MonthlyEarning:'MonthlyEarning',
+  OrderCustomerDetails:'OrderCustomerDetails',
+  Notifications:'Notifications'
 };
 
 export default Routes;

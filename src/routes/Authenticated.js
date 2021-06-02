@@ -10,6 +10,10 @@ import TotalOrderScreen from '../screen/OrderDetails/TotalOrderScreen';
 import RestaurantMapScreen from '../screen/RestaurantMapScreen';
 import CustomerMapScreen from '../screen/CustomerMapScreen';
 import DeliverScreen, { EarningScreen } from '../screen/EarningScreen';
+import { Color } from '../utils';
+import TopNavEarning from '../component/TopNavEarning';
+import OrderCustomerDetails from '../screen/OrderCustomerDetails'
+import Notifications from '../screen/Notifications';
 
 
 const Stack = createStackNavigator();
@@ -28,19 +32,36 @@ const Authenticated = () => {
         name={Routes.Profile}
         component={Profile}
         options={{
-          headerShown: false,
+          headerTitleAlign:'center',
+          headerStyle: {
+            backgroundColor:Color.PRIMARY,
+          },
+          headerTintColor:Color.WHITE_SMOKE
         }}
+        
       />
       <Stack.Screen
        name={Routes.DocumentScreen}
        component={DocumentScreen}
        options={{
-         headerShown:false
-       }}/>
+         headerTitleAlign:'center',
+         headerTitle:'Document',
+         headerStyle: {
+          backgroundColor:Color.PRIMARY,
+        },
+        headerTintColor:Color.WHITE_SMOKE
+       }}
+       />
        <Stack.Screen
        name={Routes.OderDetails}
        component={TopNav}
-       options={{headerShown:true}}/>
+       options={{
+         headerTitleAlign:'center',
+         headerStyle: {
+          backgroundColor:Color.PRIMARY,
+        },
+        headerTintColor:Color.WHITE_SMOKE
+       }}/>
        
        <Stack.Screen 
        name={Routes.CancelledOrderScreen}
@@ -53,15 +74,65 @@ const Authenticated = () => {
        <Stack.Screen
         name={Routes.RestaurantMapScreen}
         component={RestaurantMapScreen}
-        options={{headerShown:false}}/>
+        options={{
+          title:"Live Track",
+          headerTitleAlign:'center',
+          headerStyle: {
+            backgroundColor:Color.PRIMARY,
+          },
+          headerTintColor:Color.WHITE_SMOKE
+        }}
+      />
         <Stack.Screen 
         name={Routes.CustomerMapScreen}
         component={CustomerMapScreen}
-        options={{headerShown:false}}/>
+        options={{
+          title:"Live Track",
+          headerTitleAlign:'center',
+          headerStyle: {
+            backgroundColor:Color.PRIMARY,
+          },
+          headerTintColor:Color.WHITE_SMOKE
+        }}
+       />
         <Stack.Screen
         name={Routes.EarningScreen}
-        component={EarningScreen}
-        options={{headerShown:false}}/>
+        component={TopNavEarning}
+        options={{
+          headerTitleAlign:'center',
+          headerTitle:'Earnings',
+          headerStyle: {
+            backgroundColor:Color.PRIMARY,
+          },
+          headerTintColor:Color.WHITE_SMOKE
+        }}
+       />
+
+       <Stack.Screen 
+       name={Routes.OrderCustomerDetails}
+       component={OrderCustomerDetails}
+       options={
+         {
+           headerTitle:"Customer Order Details",
+          headerStyle: {
+            backgroundColor:Color.PRIMARY,
+          },
+          headerTintColor:Color.WHITE_SMOKE,
+          headerTitleAlign:'center'
+         }
+       } />
+
+       <Stack.Screen 
+        name={Routes.Notifications}
+        component={Notifications}
+        options={{
+          headerTitle:"Notifications",
+          headerStyle:{
+            backgroundColor:Color.PRIMARY,
+          },
+          headerTintColor:Color.WHITE_SMOKE,
+          headerTitleAlign:'center'
+        }}/>
     </Stack.Navigator>
   );
 };

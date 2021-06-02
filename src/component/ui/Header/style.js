@@ -4,20 +4,20 @@ import {Color} from '../../../utils/Color';
 
 const styles = StyleSheet.create({
   container: {
-    height: ThemeUtils.relativeHeight(10),
+    height: ThemeUtils.relativeHeight(8),
     width: ThemeUtils.relativeWidth(100),
-    backgroundColor: Color.LIME_Green,
+    backgroundColor: Color.PRIMARY,
     // borderBottomStartRadius: 20,
     // borderBottomEndRadius: 20,
   },
   subContainer: {
-    marginTop: 20,
-    paddingHorizontal: 30,
+    marginTop: 10,
+    paddingHorizontal: 20,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent:'space-between',
   },
   text: {
-    alignItems: 'center',
+    alignItems:'center',
     fontSize: 24,
     color: Color.WHITE,
   },

@@ -1,22 +1,15 @@
 import React, {Component} from 'react';
 import {FlatList} from 'react-native';
-import { Modal } from 'react-native';
 import {SafeAreaView} from 'react-native';
 import {Text, View, Image} from 'react-native';
 import {Header, Label} from '../../component';
 import {Color, ThemeUtils} from '../../utils';
-// import Icon from 'react-native-vector-icons/FontAwesome';
 
-export class EarningScreen extends Component {
-    constructor(){
-        super()
-        this.props ={
-            modelshow:true
-        }
-    }
-  render() {
-    return (
-      <SafeAreaView>
+
+export class DaliyEarning extends Component {
+    render() {
+        return (
+            <SafeAreaView>
         <View>
           <FlatList
             data={[
@@ -82,20 +75,18 @@ export class EarningScreen extends Component {
                     }}
                   />
                   <View>
-                    <Label >{item.date}</Label>
-                    <Label >{item.orderid}</Label>
+                    <Label>{item.date}</Label>
+                    <Label>{item.orderid}</Label>
                   </View>
                   <Label>{item.price}</Label>
                 </View>
               </View>
             )}
           />
-
-          
         </View>
       </SafeAreaView>
-    );
-  }
+        )
+    }
 }
 
-export default EarningScreen;
+export default DaliyEarning

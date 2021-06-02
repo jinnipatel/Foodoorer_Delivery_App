@@ -110,8 +110,9 @@ export class RestaurantMapScreen extends Component {
                 {/* <Button /> */}
                 <SocialButton
                   btntext="Picked Up"
-                  source={require('../../assets/Img/right_logo.jpeg')}
-                  onPress={() => this.setState({modelshow: true})}
+                  source={require('../../assets/Img/right_logo.png')}
+                  onPress = {()=>this.props.navigation.navigate(Routes.OrderCustomerDetails)}
+                  // onPress={() => this.setState({modelshow: true})}
                 />
 
                 <Modal
@@ -120,12 +121,12 @@ export class RestaurantMapScreen extends Component {
                   visible={this.state.modelshow}>
                   <View
                     style={{
-                      flex:2,
+                      flex:1,
                       backgroundColor: Color.WHITE,
                       borderRadius: 25,
                       margin:15,
                     }}>
-                    <Label align="center" mt={15}>ORD12456789</Label>
+                    {/* <Label align="center" mt={15}>ORD12456789</Label>
 
                     <Label ms={25}>Order</Label>
                     <View
@@ -232,9 +233,9 @@ export class RestaurantMapScreen extends Component {
                     </View>
                        <View style={{justifyContent:'center',alignItems:'center'}}>
                        <SocialButton btntext="start"
-                        source={require('../../assets/Img/right_logo.jpeg')}
+                        source={require('../../assets/Img/right_logo.png')}
                         onPress={() => this.props.navigation.navigate(Routes.CustomerMapScreen)} />
-                       </View>
+                       </View> */}
                   </View>
                 </Modal>
 
