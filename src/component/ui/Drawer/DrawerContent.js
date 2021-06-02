@@ -12,22 +12,25 @@ import {Color} from '../../../utils/Color';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
+ 
+
 export function DrawerContent(props) {
 
-
-  resetStack = CommonActions.reset({
+  const resetStack = CommonActions.reset({
     index: 0,
     routes: [{name: Routes.SplashScreen}],
   });
-  removeAuthentication = async () => {
+  const removeAuthentication = async () => {
     try {
       console.log('logout');
       await AsyncStorage.clear();
-      this.props.navigation.dispatch(this.resetStack);
+      props.navigation.dispatch(resetStack);
     } catch (e) {
       console.log(e);
     }
   };
+
+
   return (
     <View style={{flex: 1, backgroundColor: Color.PRIMARY}}>
       <View
@@ -112,7 +115,7 @@ export function DrawerContent(props) {
             )}
             label="Log-Out"
             labelStyle={{fontSize: 20, color: Color.PRIMARY_DARK}}
-            onPress={()=>{() =>this.removeAuthentication()}}
+            onPress={()=>removeAuthentication()}
           />
         </Drawer.Section>
       </View>
