@@ -46,7 +46,7 @@ export class ForgotPassword extends Component {
 
   render() {
     return (
-      <SafeAreaView>
+      // <SafeAreaView>
       <View style={styles.container}>
         <LinearGradient
           colors={[Color.GRADIENT3, Color.GRADIENT4]}
@@ -97,7 +97,7 @@ export class ForgotPassword extends Component {
           </KeyboardAwareScrollView>
         </LinearGradient>
       </View>
-      </SafeAreaView>
+      // </SafeAreaView>
     );
   }
 }

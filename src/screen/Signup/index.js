@@ -214,8 +214,16 @@ class Signup extends Component {
                   />
 
                   <Label small color={Color.ERROR} ms={30}>
-                    {this.state.confirmpasswordError}
-                  </Label>
+                     {this.state.confirmpasswordError}
+                  </Label> 
+                  {/* {this.state.confirmpasswordError != null ? (
+                      <Label small mt={5} mb={5} ms={30} color={Color.ERROR}>
+                        {this.state.confirmpasswordError===null?'Please enter confirm password':
+                    this.state.confirmpasswordError}
+                      </Label>
+                    ) : (
+                      <Label></Label>
+                    )} */}
                 </View>
                 <View style={{marginTop: 10, paddingBottom: 10}}>
                   <Button name="sign-In" onPress={this.check_validate} />

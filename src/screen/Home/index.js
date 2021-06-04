@@ -242,7 +242,7 @@ export class Home extends Component {
                     Expected Earning
                   </Label>
                   <Label large color={Color.DARK_GRAY}>
-                    $8
+                    Rs.40
                   </Label>
                 </View>
                 <View>

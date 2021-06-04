@@ -67,7 +67,7 @@ export class ResetPassword extends Component {
 
   render() {
     return (
-      <SafeAreaView>
+      // <SafeAreaView>
       <View style={CommonStyles.conatiner}>
         <LinearGradient
           colors={[Color.GRADIENT3, Color.GRADIENT4]}
@@ -140,7 +140,7 @@ export class ResetPassword extends Component {
           </KeyboardAwareScrollView>
         </LinearGradient>
       </View>
-      </SafeAreaView>
+      // </SafeAreaView>
     );
   }
 }
