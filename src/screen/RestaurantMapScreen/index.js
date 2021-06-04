@@ -13,6 +13,7 @@ import MapView from 'react-native-maps';
 import {Marker} from 'react-native-maps';
 import {Color} from '../../utils';
 import { FlatList } from 'react-native';
+import { SafeAreaView } from 'react-native';
 
 export class RestaurantMapScreen extends Component {
   constructor() {
@@ -34,6 +35,7 @@ export class RestaurantMapScreen extends Component {
   };
   render() {
     return (
+      // <SafeAreaView>
       <View
         style={{
           position: 'absolute',
@@ -52,12 +54,12 @@ export class RestaurantMapScreen extends Component {
           zoomEnabled={true}
           zoomControlEnabled={true}
           initialRegion={{
-            latitude: 28.57966,
-            longitude: 77.32111,
+            latitude: 23.033863,
+            longitude: 72.585022,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }}>
-          <Marker coordinate={{latitude: 28.57966, longitude: 77.32111}} />
+          <Marker coordinate={{latitude:23.033863, longitude:  72.585022}} />
         </MapView>
 
         <Modal
@@ -77,7 +79,7 @@ export class RestaurantMapScreen extends Component {
               paddingHorizontal: 20,
               paddingVertical: 20,
               // backgroundColor:Color.PRIMARY,
-              backgroundColor: '#00FA9A',
+              backgroundColor: Color.PRIMARY,
               borderTopStartRadius: 20,
               borderTopEndRadius: 20,
               height: '50%',
@@ -92,6 +94,7 @@ export class RestaurantMapScreen extends Component {
                 }}>
                 <Image
                   source={require('../../assets/Img/boy_logo.jpg')}
+                  resizeMode="contain"
                   style={{width: 100, height: 80, alignSelf: 'center'}}
                 />
 
@@ -245,6 +248,7 @@ export class RestaurantMapScreen extends Component {
           </View>
         </Modal>
       </View>
+     
     );
   }
 }

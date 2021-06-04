@@ -10,6 +10,7 @@ import {validation} from '../../utils/ValidationUtils';
 import CommonStyles from '../../utils/CommonStyles';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import { SafeAreaView } from 'react-native';
 
 export class ForgotPassword extends Component {
   constructor() {
@@ -45,6 +46,7 @@ export class ForgotPassword extends Component {
 
   render() {
     return (
+      <SafeAreaView>
       <View style={styles.container}>
         <LinearGradient
           colors={[Color.GRADIENT3, Color.GRADIENT4]}
@@ -56,6 +58,7 @@ export class ForgotPassword extends Component {
             resetScrollToCoords={{x: 0, y: 0}}
             scrollEnabled={true}
             enableResetScrollToCoords={false}
+            showsVerticalScrollIndicator={false}
             keyboardVerticalOffset={0}
             enableOnAndroid={true}
             keyboardShouldPersistTaps="always">
@@ -94,6 +97,7 @@ export class ForgotPassword extends Component {
           </KeyboardAwareScrollView>
         </LinearGradient>
       </View>
+      </SafeAreaView>
     );
   }
 }

@@ -23,7 +23,8 @@ const Routes = {
   DaliyEarning:'DaliyEarning',
   MonthlyEarning:'MonthlyEarning',
   OrderCustomerDetails:'OrderCustomerDetails',
-  Notifications:'Notifications'
+  Notifications:'Notifications',
+  MapScreen:'MapScreen'
 };
 
 export default Routes;

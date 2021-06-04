@@ -1,15 +1,19 @@
 import React, {Component} from 'react';
 import {FlatList} from 'react-native';
 import {TouchableOpacity} from 'react-native';
+import { SafeAreaView } from 'react-native';
 import {Text, View,Image} from 'react-native';
-import {Header, Label} from '../../component';
+import {Header, Label, Status} from '../../component';
 import Routes from '../../routes/routes';
+import * as Animatable from 'react-native-animatable';
 import {Color, CommonStyle, ThemeUtils} from '../../utils';
 
 
 export class OrderDetails extends Component {
   render() {
     return (
+      <SafeAreaView>
+        <Status hidden={true}/>
       <View>
         {/* <Header
           Headertext="OrderDetails"
@@ -146,6 +150,7 @@ export class OrderDetails extends Component {
                         marginTop: 20,
                         marginStart: 20,
                       }}
+                      resizeMode="contain"
                     />
                     <View style={{marginTop: 10}}>
                       <Label ms={20} mt={10} large color={Color.PRIMARY_DARK} >
@@ -180,6 +185,7 @@ export class OrderDetails extends Component {
           />
         </View>
       </View>
+      </SafeAreaView>
     );
   }
 }

@@ -3,8 +3,9 @@ import {FlatList} from 'react-native';
 import { Modal } from 'react-native';
 import {SafeAreaView} from 'react-native';
 import {Text, View, Image} from 'react-native';
-import {Header, Label} from '../../component';
+import {Header, Label, Status} from '../../component';
 import {Color, ThemeUtils} from '../../utils';
+import Style from './Style';
 // import Icon from 'react-native-vector-icons/FontAwesome';
 
 export class EarningScreen extends Component {
@@ -17,6 +18,7 @@ export class EarningScreen extends Component {
   render() {
     return (
       <SafeAreaView>
+        <Status hidden={true}/>
         <View>
           <FlatList
             data={[
@@ -25,56 +27,57 @@ export class EarningScreen extends Component {
                 date: '15/04/2020',
                 orderid: 'Order #886402',
                 img: require('../../assets/Img/salary.png'),
-                price: '$6',
+                price: 'Rs.40',
               },
               {
                 id: 2,
                 date: '15/04/2020',
                 orderid: 'Order #886402',
                 img: require('../../assets/Img/salary.png'),
-                price: '$6',
+                price: 'Rs.40',
               },
               {
                 id: 3,
                 date: '15/04/2020',
                 orderid: 'Order #886402',
                 img: require('../../assets/Img/salary.png'),
-                price: '$6',
+                price: 'Rs.40',
               },
               {
                 id: 4,
                 date: '15/04/2020',
                 orderid: 'Order #886402',
                 img: require('../../assets/Img/salary.png'),
-                price: '$6',
+                price: 'Rs.40',
               },
               {
                 id: 5,
                 date: '15/04/2020',
                 orderid: 'Order #886402',
                 img: require('../../assets/Img/salary.png'),
-                price: '$6',
+                price: 'Rs.40',
               },
             ]}
             renderItem={({item}) => (
               <View >
                 <View
-                  style={{
+                  style={Style.MainContainer}>
                      
-                    flexDirection: 'row',
-                    marginHorizontal: 20,
-                    padding: 20,
-                    justifyContent: 'space-between',
-                    marginTop: 20,
-                    borderWidth:2,
+                    {/* // flexDirection: 'row',
+                    // marginHorizontal: 20,
+                    // padding: 20,
+                    // justifyContent: 'space-between',
+                    // marginTop: 20,
+                    // borderWidth:2,
                 
-                    borderRadius:8,
-                    borderColor:Color.PRIMARY_DARK,
-                    backgroundColor:Color.WHITE,
-                    alignItems:'center',
-                    borderStyle:'dashed',
-                  }}>
+                    // borderRadius:8,
+                    // borderColor:Color.PRIMARY_DARK,
+                    // backgroundColor:Color.WHITE,
+                    // alignItems:'center',
+                    // borderStyle:'dashed', */}
+      
                   <Image
+                    resizeMode="contain"
                     source={item.img}
                     style={{
                       width: ThemeUtils.relativeHeight(10),

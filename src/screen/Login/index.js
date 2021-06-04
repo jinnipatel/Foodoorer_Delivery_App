@@ -81,6 +81,7 @@ class Login extends Component {
             style={{flex: 1}}
             resetScrollToCoords={{x: 0, y: 0}}
             scrollEnabled={true}
+            showsVerticalScrollIndicator={false}
             enableResetScrollToCoords={false}
             keyboardVerticalOffset={0}
             enableOnAndroid={true}

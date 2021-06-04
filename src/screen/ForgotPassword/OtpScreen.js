@@ -7,9 +7,11 @@ import styles from './style';
 import * as Animatable from 'react-native-animatable';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Routes from '../../routes/routes';
+import { SafeAreaView } from 'react-native';
 export class OtpScreen extends Component {
   render() {
     return (
+      <SafeAreaView>
       <View style={styles.container}>
         <LinearGradient
           colors={[Color.JUNGLE_GREEN, Color.JELLY_BEAN]}
@@ -76,6 +78,7 @@ export class OtpScreen extends Component {
           </Animatable.View>
         </LinearGradient>
       </View>
+      </SafeAreaView>
     );
   }
 }

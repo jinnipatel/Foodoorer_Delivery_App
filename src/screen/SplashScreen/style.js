@@ -14,9 +14,13 @@ const styles = StyleSheet.create({
     paddingTop: Platform.OS === 'ios' ? 20 : 0,
   },
   logo: {
-    height: ThemeUtils.relativeHeight(30),
-    width: ThemeUtils.relativeWidth(50),
-    alignItems: 'center',
+    height: 200,
+    width: "80%",
+    // height:ThemeUtils.responsiveHeight(200),
+    // width:ThemeUtils.responsiveHeight(80),
+    // alignItems: 'center',
+    alignSelf:'center',
+    
   },
   footer: {
     position: 'absolute',

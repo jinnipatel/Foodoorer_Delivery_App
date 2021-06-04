@@ -67,6 +67,7 @@ export class ResetPassword extends Component {
 
   render() {
     return (
+      <SafeAreaView>
       <View style={CommonStyles.conatiner}>
         <LinearGradient
           colors={[Color.GRADIENT3, Color.GRADIENT4]}
@@ -78,6 +79,7 @@ export class ResetPassword extends Component {
             resetScrollToCoords={{x: 0, y: 0}}
             scrollEnabled={true}
             enableResetScrollToCoords={false}
+            showsVerticalScrollIndicator={false}
             keyboardVerticalOffset={0}
             enableOnAndroid={true}
             keyboardShouldPersistTaps="always">
@@ -138,6 +140,7 @@ export class ResetPassword extends Component {
           </KeyboardAwareScrollView>
         </LinearGradient>
       </View>
+      </SafeAreaView>
     );
   }
 }

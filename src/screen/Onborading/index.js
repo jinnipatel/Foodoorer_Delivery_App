@@ -7,7 +7,12 @@ import {Label} from '../../component/index';
 import {Color} from '../../utils/Color';
 import styles from './style';
 
+
+
+
+
 const Onboarding = ({navigation}) => {
+
   const slides = [
     {
       key: 's1',
@@ -33,6 +38,8 @@ const Onboarding = ({navigation}) => {
     props.onDone();
   };
 
+  
+
   const RenderNextButton = () => {
     return (
       <View style={styles.buttonCircle}>
@@ -56,7 +63,7 @@ const Onboarding = ({navigation}) => {
   const RenderItem = ({item}) => {
     return (
       <View style={styles.container}>
-        <Image style={styles.introImageStyle} source={item.image} />
+        <Image style={styles.introImageStyle} resizeMode='contain' source={item.image} />
         <Label
           xlarge
           bolder
@@ -78,6 +85,7 @@ const Onboarding = ({navigation}) => {
   return (
     <View style={{flex: 1}}>
       <StatusBar hidden={true} />
+    
       <AppIntroSlider
         data={slides}
         renderItem={RenderItem}
@@ -87,6 +95,7 @@ const Onboarding = ({navigation}) => {
         dotStyle={styles.dotStyle}
         activeDotStyle={styles.activeDotStyle}
       />
+   
     </View>
   );
 };

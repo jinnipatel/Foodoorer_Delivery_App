@@ -53,6 +53,7 @@ class SplashScreen extends React.Component {
         <Status hidden={true} />
         <Image
           source={require('../../assets/Img/foodoorer.jpg')}
+          resizeMode="contain"
           style={styles.logo}
         />
         <View style={styles.footer}>

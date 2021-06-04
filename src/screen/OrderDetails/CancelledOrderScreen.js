@@ -1,14 +1,18 @@
 import React, {Component} from 'react';
+import { SafeAreaView } from 'react-native';
 import {FlatList} from 'react-native';
 import {Text, View, Image} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {Header, Label} from '../../component';
+import {Header, Label, Status} from '../../component';
 import Routes from '../../routes/routes';
 import {Color, CommonStyle, ThemeUtils} from '../../utils';
+import * as Animatable from 'react-native-animatable';
 
 export class CancelledOrderScreen extends Component {
   render() {
     return (
+      <SafeAreaView>
+        <Status hidden={true}/>
       <View>
         {/* <Header
           Headertext="OrderDetails"
@@ -106,9 +110,12 @@ export class CancelledOrderScreen extends Component {
                 date:"jan 20,2020"
               },
             ]}
-            renderItem={({item}) => (
+            renderItem={({item}) => (   
+          
               <TouchableOpacity>
-                <View
+                <Animatable.View
+                  animation="fadeInLeftBig"
+                  iterationDelay={400}
                   style={{
                     flexDirection: 'row',
                     borderRadius: 10,
@@ -135,6 +142,7 @@ export class CancelledOrderScreen extends Component {
                         marginTop: 20,
                         marginStart: 20,
                       }}
+                      resizeMode="contain"
                     />
                     <View style={{marginTop: 10}}>
                       <Label ms={20} mt={10} large color={Color.PRIMARY_DARK}>
@@ -147,7 +155,7 @@ export class CancelledOrderScreen extends Component {
                         {item.Location}
                       </Label>
                       <View style={{flexDirection:'row'}}>
-                       <Label ms={20} mt={10} small  color={Color.PRIMARY_DARK}>{item.date}</Label> 
+                       <Label ms={20} mt={10}  color={Color.PRIMARY_DARK}>{item.date}</Label> 
                       <Image source={item.icon} style={{
                         width: 50,
                         height: 50,
@@ -162,12 +170,13 @@ export class CancelledOrderScreen extends Component {
                      </View>
                     </View>
                   </View>
-                </View>
+                </Animatable.View>
               </TouchableOpacity>
             )}
           />
         </View>
       </View>
+      </SafeAreaView>
     );
   }
 }

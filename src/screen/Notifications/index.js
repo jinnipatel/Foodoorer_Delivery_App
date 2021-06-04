@@ -1,16 +1,17 @@
 import { Item } from 'native-base'
 import React, { Component } from 'react'
-import { SafeAreaView } from 'react-native'
+import { SafeAreaView, TextInput } from 'react-native'
 import { FlatList } from 'react-native'
 import { Text, View ,Image} from 'react-native'
 import Icons from 'react-native-vector-icons/Ionicons'
-import { Label } from '../../component'
+import { Label, Status } from '../../component'
 import { Color, ThemeUtils } from '../../utils'
 
 export class Notifications extends Component {
     render() {
         return (
           <SafeAreaView>
+              <Status hidden={true}/>
               <View>
                   <View style={{flexDirection:'row',justifyContent:'flex-start',marginTop:20,marginBottom:20,marginHorizontal:20}}>
                       <Icons name="notifications" size={40} />
@@ -83,7 +84,7 @@ export class Notifications extends Component {
                         shadowOpacity: 0.34,
                         shadowRadius: 6.27,
                         elevation: 10,}}>
-                            <Image source={item.img} style={{width:ThemeUtils.relativeWidth(20),height:ThemeUtils.relativeHeight(10)}}/>
+                            <Image source={item.img} resizeMode="contain" style={{width:ThemeUtils.relativeWidth(20),height:ThemeUtils.relativeHeight(10)}}/>
                             <View>
                             <Label small color={Color.PRIMARY_DARK}>{item.orderid}</Label>
                             <Label small color={Color.DARK_GRAY}>{item.date}</Label>
@@ -93,11 +94,7 @@ export class Notifications extends Component {
                    
                   />
 
-              </View>
-
-
-
-              
+              </View>              
           </SafeAreaView>
         )
     }

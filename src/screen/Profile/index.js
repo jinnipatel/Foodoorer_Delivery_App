@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {TouchableOpacity} from 'react-native';
 import {SafeAreaView} from 'react-native';
 import {Text, View, Image, Modal} from 'react-native';
-import {Button, Card, Header, InputText, Label} from '../../component';
+import {Button, Card, Header, InputText, Label, Status} from '../../component';
 import Routes from '../../routes/routes';
 import {Color, CommonStyle, ThemeUtils} from '../../utils';
 import Styles from './style';
@@ -53,6 +53,8 @@ export class Profile extends Component {
   render() {
     return (
       // <SafeAreaView>
+      <SafeAreaView>
+        <Status hidden={true}/>
       <View style={Styles.MainConatiner}>
         {/* <Header
           name="chevron-back"
@@ -187,6 +189,7 @@ export class Profile extends Component {
                
            <Image
               source={require('../../assets/Img/profile_logo.png')}
+              resizeMode="contain"
               style={{width:ThemeUtils.relativeWidth(30),height:ThemeUtils.relativeHeight(16),alignSelf:'center',marginTop:10}}
               // style={Styles.image} 
             /> 
@@ -282,7 +285,8 @@ export class Profile extends Component {
             />
           </View> 
       </View>
-    // </View>    
+    {/* // </View>  */}
+    </SafeAreaView>   
       
     );
   }

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {CommonActions} from '@react-navigation/routers';
 import {View, SafeAreaView} from 'react-native';
 import {ImageComp, InputText, Label, Status} from '../../component/index';
 import {Button} from '../../component/index';
@@ -82,10 +83,14 @@ class Signup extends Component {
         confirmPassword: this.state.confirmPassword,
       };
       AsyncStorage.setItem('signup_data', JSON.stringify(obj));
-      alert('SignUp SuccessFully Completed');
-      this.props.navigation.navigate(Routes.Login);
+      // alert('SignUp SuccessFully Completed');
+      this.props.navigation.dispatch(this.resetToAuth);
     }
   };
+  resetToAuth = CommonActions.reset({
+    index: 0,
+    routes: [{name: Routes.Authenticated}],
+  });
 
   IconToggle = () => {
     this.state.isSecurePassword
@@ -113,6 +118,7 @@ class Signup extends Component {
             scrollEnabled={true}
             enableResetScrollToCoords={false}
             keyboardVerticalOffset={0}
+            showsVerticalScrollIndicator={false}
             enableOnAndroid={true}
             keyboardShouldPersistTaps="always">
             <View>

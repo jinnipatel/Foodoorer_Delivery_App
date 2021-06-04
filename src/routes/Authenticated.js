@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import Routes from './routes';
-import {DrawerComponent, TopNav} from '../component';
+import {DrawerComponent, TopNav, TopNavEarning} from '../component';
 import Profile from '../screen/Profile';
 import DocumentScreen from '../screen/DocumentScreen';
 import OderDetails, { OrderDetails } from '../screen/OrderDetails';
@@ -11,9 +11,9 @@ import RestaurantMapScreen from '../screen/RestaurantMapScreen';
 import CustomerMapScreen from '../screen/CustomerMapScreen';
 import DeliverScreen, { EarningScreen } from '../screen/EarningScreen';
 import { Color } from '../utils';
-import TopNavEarning from '../component/TopNavEarning';
 import OrderCustomerDetails from '../screen/OrderCustomerDetails'
 import Notifications from '../screen/Notifications';
+import MapScreen from '../screen/MapScreen';
 
 
 const Stack = createStackNavigator();
@@ -133,6 +133,8 @@ const Authenticated = () => {
           headerTintColor:Color.WHITE_SMOKE,
           headerTitleAlign:'center'
         }}/>
+        <Stack.Screen  name={Routes.MapScreen}
+        component={MapScreen}/>
     </Stack.Navigator>
   );
 };
