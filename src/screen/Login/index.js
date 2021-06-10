@@ -74,7 +74,7 @@ class Login extends Component {
       isValid = true;
     }
     if (isValid) {
-      // this.loginUserRequest();
+      this.loginUserRequest();
 
       this.props.navigation.navigate(Routes.Auth, {
         email: this.state.email,
@@ -207,14 +207,14 @@ class Login extends Component {
   }
 }
 
-// function mapStateToProps(state) {
-//   return {
-//     data: state.login
-//   }
-// }
+function mapStateToProps(state) {
+  return {
+    data: state.login
+  }
+}
 
-// const mapDispatchToProps = dispatch =>
-//   bindActionCreators({ getUser }, dispatch)    //action dispatch getuser
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ getUser }, dispatch)    //action dispatch getuser
 
 // const mapDispatchToProps = dispatch => ({
 //   loginAction: (email, password) => dispatch(login(email, password))
@@ -223,8 +223,8 @@ class Login extends Component {
 
 
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Login)
-export default Login;
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
+// export default Login;
 
 
 

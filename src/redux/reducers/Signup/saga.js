@@ -8,17 +8,17 @@ export function* createUsers(action) {
     try {
         const apiConfig = {
             method: 'POST',
-            url: "https://reqres.in/api/register",
+            url: "http://foodooerdashboard.project-demo.info/api/register",
             data: {
-                name: action.payload.name,
-                email: action.payload.email,
-                password: action.payload.password,
-                contact_no: action.payload.phoneNo,
+                // name: action.payload.name,
+                // email: action.payload.email,
+                // password: action.payload.password,
+                // contact_no: action.payload.phoneNo,
                 // email: action.payload.email,
             }
         }
         const response = yield call(axios, apiConfig);
-        console.log("SignUp User Data-------------", response)
+        console.log("SignUp User Data-------------", response.data)
         alert("Hello")
         yield put({ type: CREATE_USER_SUCCESS, payload: response })
     } catch (error) {

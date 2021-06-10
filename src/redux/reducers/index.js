@@ -4,7 +4,7 @@ import signupReducer from './Signup/reducers'
 import onboradingReducer from './Onborading/reducers'
 
 const rootReducer = combineReducers({
-    // login: loginReducer,
+    login: loginReducer,
     signup: signupReducer,
     onborading: onboradingReducer
 })

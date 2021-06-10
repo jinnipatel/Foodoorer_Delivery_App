@@ -1,6 +1,6 @@
 import React from 'react';
-import {Text} from 'react-native';
-import {Color} from '../../../utils/Color';
+import { Text } from 'react-native';
+import { Color } from '../../../utils/Color';
 import Theme from '../../../utils/ThemeUtils';
 import PropTypes from 'prop-types';
 
@@ -11,25 +11,25 @@ export class Label extends React.Component {
 
   render() {
     let stylesArray = [];
-    if (this.props.xxlarge) stylesArray.push({fontSize: Theme.fontXXLarge});
-    else if (this.props.xlarge) stylesArray.push({fontSize: Theme.fontXLarge});
-    else if (this.props.large) stylesArray.push({fontSize: Theme.fontLarge});
-    else if (this.props.normal) stylesArray.push({fontSize: Theme.fontNormal});
-    else if (this.props.small) stylesArray.push({fontSize: Theme.fontSmall});
-    else if (this.props.xsmall) stylesArray.push({fontSize: Theme.fontXSmall});
-    else stylesArray.push({fontSize: Theme.fontNormal});
+    if (this.props.xxlarge) stylesArray.push({ fontSize: Theme.fontXXLarge });
+    else if (this.props.xlarge) stylesArray.push({ fontSize: Theme.fontXLarge });
+    else if (this.props.large) stylesArray.push({ fontSize: Theme.fontLarge });
+    else if (this.props.normal) stylesArray.push({ fontSize: Theme.fontNormal });
+    else if (this.props.small) stylesArray.push({ fontSize: Theme.fontSmall });
+    else if (this.props.xsmall) stylesArray.push({ fontSize: Theme.fontXSmall });
+    else stylesArray.push({ fontSize: Theme.fontNormal });
 
-    if (this.props.bold) stylesArray.push({fontWeight: '500'});
-    else if (this.props.bolder) stylesArray.push({fontWeight: 'bold'});
-    else if (this.props.light) stylesArray.push({fontWeight: '400'});
-    else if (this.props.lighter) stylesArray.push({fontWeight: '200'});
-    else stylesArray.push({fontWeight: 'normal'});
+    if (this.props.bold) stylesArray.push({ fontWeight: '500' });
+    else if (this.props.bolder) stylesArray.push({ fontWeight: 'bold' });
+    else if (this.props.light) stylesArray.push({ fontWeight: '400' });
+    else if (this.props.lighter) stylesArray.push({ fontWeight: '200' });
+    else stylesArray.push({ fontWeight: 'normal' });
 
     if (this.props.roboto_medium)
-      stylesArray.push({fontFamily: 'Roboto-Medium'});
+      stylesArray.push({ fontFamily: 'Roboto-Medium' });
     else if (this.props.roboto_regular)
-      stylesArray.push({fontFamily: 'Roboto-Regular'});
-    else stylesArray.push({fontFamily: 'Roboto-Regular'});
+      stylesArray.push({ fontFamily: 'Roboto-Regular' });
+    else stylesArray.push({ fontFamily: 'Roboto-Regular' });
 
     // if(this.props.border)
     //     stylesArray.push({borderBottomWidth:2})
@@ -41,6 +41,8 @@ export class Label extends React.Component {
       marginStart: this.props.ms,
       marginEnd: this.props.me,
       textAlign: this.props.align,
+      backgroundColor: this.props.backgroundColor,
+      padding: this.props.padding,
       borderBottomWidth: this.props.border,
     });
     stylesArray.push(this.props.style);
