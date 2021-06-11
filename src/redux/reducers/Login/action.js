@@ -1,11 +1,11 @@
-import { FETCH_USER } from '../contants/action-types'
+// import { FETCH_USER } from '../contants/action-types'
 
 // import { FETCH_USER, FETCH_USER_FAILURE, FETCH_USER_SUCCESS } from "../contants/action-types";
 
-export const getUser = (user) => ({
-    type: FETCH_USER,
-    user,
-})
+// export const getUser = (user) => ({
+//     type: FETCH_USER,
+//     user,
+// })
 
 // export function login(email, password) {
 //     return {
@@ -48,4 +48,11 @@ export const getUser = (user) => ({
 //     }
 // }
 
+import * as types from '../contants/action-types'
 
+export const loginUserAction = (param, props, cbError, cbSuccess) => {
+    return {
+        type: types.LOGIN_USER,
+        payload: { param, props, cbError, cbSuccess }
+    }
+}

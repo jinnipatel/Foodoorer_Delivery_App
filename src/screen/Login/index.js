@@ -20,6 +20,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getUser } from '../../redux/reducers/Login/action'
+import { loginUserAction } from '../../redux/reducers/Login/action'
 
 
 class Login extends Component {
@@ -48,38 +49,62 @@ class Login extends Component {
   //     let param = {
   //       email: email,
   //       password: password,
-  //       app_type: 'parent'
+  //       // app_type: 'parent'
   //     }
   //     this.fetchAll(param)
   //     console.log("data||||||||")
-  //     // this.props.navigation.navigate(Routes.Home)
+  //     this.props.navigation.navigate(Routes.Home)
   //   })
   // }
 
+  loginUserRequest = async () => {
+    console.log('login User clicked');
+
+    const { email, password } = this.state;
+    this.setState({ visibility: true }, () => {
+      let param =
+      {
+        email: "d@gmail.com",
+        password: 123456,
+      };
+      this.props.loginUserAction(param, this.props,
+        cbError = err => {
+          console.log(err)
+
+        },
+        cbSuccess = err => {
+          console.log("Hello World")
+
+        }
+      );
+      // this.fetchAll(param);
+    });
+  }
+
   checked_filed = () => {
     let emailError, PasswordError, isValid;
-    emailError = validation('email', this.state.email);
-    PasswordError = validation('password', this.state.password);
-    if (emailError != null || PasswordError != null) {
-      this.setState({
-        emailError: emailError,
-        PasswordError: PasswordError,
-      });
-      isValid = false;
-    } else {
-      this.setState({
-        emailError: '',
-        PasswordError: '',
-      });
-      isValid = true;
-    }
-    if (isValid) {
+    // emailError = validation('email', this.state.email);
+    // PasswordError = validation('password', this.state.password);
+    // if (emailError != null || PasswordError != null) {
+    //   this.setState({
+    //     emailError: emailError,
+    //     PasswordError: PasswordError,
+    //   });
+    //   isValid = false;
+    // } else {
+    //   this.setState({
+    //     emailError: '',
+    //     PasswordError: '',
+    //   });
+    //   isValid = true;
+    // }
+    if (true) {
       this.loginUserRequest();
 
-      this.props.navigation.navigate(Routes.Auth, {
-        email: this.state.email,
-        password: this.state.password,
-      });
+      // this.props.navigation.navigate(Routes.Auth, {
+      //   email: this.state.email,
+      //   password: this.state.password,
+      // });
     }
   };
 
@@ -96,7 +121,10 @@ class Login extends Component {
   };
 
   render() {
+    let { user } = this.props.login;
+    console.log(user, "kkkkkkkkkkkkkkkkkkkkkk")
     return (
+
       <SafeAreaView style={CommonStyles.container}>
         <Status hidden={true} />
         <LinearGradient
@@ -170,7 +198,8 @@ class Login extends Component {
               </Label>
 
               <View style={styles.button}>
-                <Button name="SignIn" onPress={this.making_api_call} />
+                <Button name="SignIn" onPress={() => this.making_api_call()} />
+                {/* <Button name="SignIn" onPress={() => alert("hello")} /> */}
               </View>
               <TouchableOpacity
                 onPress={() =>
@@ -207,20 +236,33 @@ class Login extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    data: state.login
-  }
-}
+// function mapStateToProps(state) {
+//   return {
+//     data: state.login
+//   }
+// }
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ getUser }, dispatch)    //action dispatch getuser
+// const mapDispatchToProps = dispatch =>
+//   bindActionCreators({ getUser }, dispatch)    //action dispatch getuser
 
 // const mapDispatchToProps = dispatch => ({
 //   loginAction: (email, password) => dispatch(login(email, password))
 // })
 
 
+const mapStateToProps = (state) => {
+  return {
+    login: state.login
+  };
+}
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      loginUserAction,
+    },
+    dispatch
+  );
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

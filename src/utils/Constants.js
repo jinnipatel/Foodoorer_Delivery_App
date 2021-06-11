@@ -1,10 +1,10 @@
 
 // internal app notifications key
- const notificationKey = {
+const notificationKey = {
     LOGOUT: 'LOGOUT',
 };
 
-const Permissions = { 
+const Permissions = {
     PHOTO: 'photo',
     CAMERA: 'camera',
     LOCATION: 'location',
@@ -23,12 +23,12 @@ const Permissions = {
     PUSH_NOTIFICATION: 'notification',
 
     //Android Permission
-    READ_EXTERNAL_STORAGE:'READ_EXTERNAL_STORAGE',
-    WRITE_EXTERNAL_STORAGE:'WRITE_EXTERNAL_STORAGE'
+    READ_EXTERNAL_STORAGE: 'READ_EXTERNAL_STORAGE',
+    WRITE_EXTERNAL_STORAGE: 'WRITE_EXTERNAL_STORAGE'
 };
 
 // api response codes
- const ResponseCode = {
+const ResponseCode = {
     OK: 200,
     CREATED: 201,
     BAD_REQUEST: 400,
@@ -43,8 +43,18 @@ const Permissions = {
     BAD_GATEWAY: 502,
 };
 
+// api methods
+const apiMethods = {
+    GET: 'GET',
+    POST: 'POST',
+    PUT: 'PUT',
+    DELETE: 'DELETE'
+};
+
+
 export default {
     notificationKey,
     ResponseCode,
-    Permissions
+    Permissions,
+    apiMethods
 }
