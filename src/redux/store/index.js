@@ -3,10 +3,31 @@ import createSagaMiddleware from 'redux-saga';
 import rootReducer from '../reducers';
 // import loginReducer from '../reducers/Login/reducers';
 import rootSaga from '../saga';
+import { persistStore, persistReducer } from 'redux-persist';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 console.log("Hello Store")
+
+
+
+const persistConfig = {
+    key: 'root',
+    storage: AsyncStorage,
+
+};
+
+// const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
+
 const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(rootReducer, applyMiddleware(sagaMiddleware))
+const store = createStore(persistedReducer, applyMiddleware(sagaMiddleware))
+
+export let persistor = persistStore(store, null, () => {
+    console.log('rehydrated');
+});
+
 sagaMiddleware.run(rootSaga);
 // console.log("-----------------------")
 // store.subscribe(() => {

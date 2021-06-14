@@ -44,7 +44,7 @@ class Onborading extends Component {
   // }
 
   render() {
-    console.log("setonborading render", this.props.isOnboardingDone)
+    console.log("setonborading render", this.props.OnboardingDone)
 
     const onDone = () => {
       this.props.onDone();
@@ -136,7 +136,7 @@ class Onborading extends Component {
 
       <>
         {this.props.OnboardingDone === true ? (
-          this.props.navigation.navigate(Routes.Login)
+          this.props.navigation.navigate(Routes.Signup)
         ) : (<View style={{ flex: 1 }}>
           <StatusBar hidden={true} />
 
@@ -171,7 +171,8 @@ class Onborading extends Component {
 const mapStateToProps = state =>
 // console.log('------Onboarding map -------', state)
 ({
-  OnboardingDone: state.onborading.value,
+  // OnboardingDone: state.onborading.value.onborading,
+  OnboardingDone: state.onborading.value
 });
 
 

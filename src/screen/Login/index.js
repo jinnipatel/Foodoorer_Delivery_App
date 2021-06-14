@@ -110,7 +110,8 @@ class Login extends Component {
 
   making_api_call = () => {
     if (this.checked_filed()) {
-      this.props.navigation.navigate(Routes.Home);
+      // this.props.navigation.navigate(Routes.Home);
+      this.props.navigation.navigate(Routes.Home)
     }
   };
 

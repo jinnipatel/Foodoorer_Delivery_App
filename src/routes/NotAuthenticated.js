@@ -14,11 +14,11 @@ const Stack = createStackNavigator();
 const NotAuthenticated = () => {
   return (
     <Stack.Navigator>
-      {/* <Stack.Screen
+      <Stack.Screen
         name={Routes.Onborading}
         component={Onborading}
         options={{ headerShown: false }}
-      /> */}
+      />
       <Stack.Screen
         name={Routes.Login}
         component={Login}

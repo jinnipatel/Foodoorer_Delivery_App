@@ -1,16 +1,10 @@
 import { View } from 'native-base';
-import React, {useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 // import Styled from 'styled-components/native';
-import MapView, {Marker} from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
 import Geolocation from 'react-native-geolocation-service';
 
 
-
-
-// interface IGeolocation {
-//   latitude: number;
-//   longitude: number;
-// }
 
 
 
@@ -20,9 +14,9 @@ const MapScreen = () => {
     longitude: -122.4324,
   });
   return (
-    <View style={{flex:1}}>
+    <View style={{ flex: 1 }}>
       <MapView
-        style={{flex: 1}}
+        style={{ flex: 1 }}
         initialRegion={{
           latitude: location.latitude,
           longitude: location.longitude,

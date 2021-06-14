@@ -215,7 +215,7 @@ class Signup extends Component {
                       align="center"
                       bolder
                       color={Color.INACTIVE_COLOR}>
-                      Login
+                      SignIn
                     </Label>
                   </TouchableOpacity>
 

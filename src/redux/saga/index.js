@@ -15,7 +15,7 @@ export default function* rootSaga() {
     // yield takeEvery(CREATE_USER, createUsers)
     yield takeEvery(types.LOGIN_USER, loginUser)
     yield takeEvery(types.REGISTER_USER, registerUser)
-    // yield takeEvery(types.SET_ONBORADING, fetch_Onborading)
+    yield takeEvery(types.SET_ONBORADING, fetch_Onborading)
     // yield takeEvery(types.REGISTER_USER, registerUser);
 }
 

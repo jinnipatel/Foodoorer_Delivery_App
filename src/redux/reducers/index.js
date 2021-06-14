@@ -7,7 +7,7 @@ import registerReducer from './Signup/reducers'
 const rootReducer = combineReducers({
     login: loginReducer,
     signup: registerReducer,
-    // onborading: onboradingReducer
+    onborading: onboradingReducer
 })
 
 export default rootReducer

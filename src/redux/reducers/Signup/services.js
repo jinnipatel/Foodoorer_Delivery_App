@@ -10,6 +10,8 @@ export const SignUpService = async (action) => {
         email: action.payload.email,
         phoneNo: action.payload.phoneNo,
         password: action.payload.password,
+        confirmPassword: action.payload.confirmPassword,
+
     }
     console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
     let result = await callService(apiUrl.register, "GET", jsonBody, action.payload.props,
