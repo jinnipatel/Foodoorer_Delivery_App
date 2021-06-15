@@ -1,8 +1,3 @@
-// login
-// export const FETCH_USER = "FETCH_USER";
-// export const FETCH_USER_SUCCESS = "FETCH_USER_SUCCESS"
-// export const FETCH_USER_FAILURE = "FETCH_USER_FAILURE"
-
 
 //login types 
 export const LOGIN_USER = "LOGIN_USER";
@@ -19,10 +14,7 @@ export const SET_ONBORADING = "FETCH_ONBORADING"
 export const SET_ONBORADING_SUCCESS = "FETCH_ONBORADING_SUCCESS"
 export const SET_ONBORADING_FAILURE = "FETCH_ONBORADING_FAILURE"
 
-// signup
-// export const CREATE_USER = "CREATE_USER"
-// export const CREATE_USER_SUCCESS = "CREATE_USER_SUCCESS"
-// export const CREATE_USER_FAILURE = "CREATE_USER_FAILURE"
+
 
 
 

@@ -1,4 +1,3 @@
-// import { callService } from "../../../services";
 import { callService } from "../../../services"
 import apiUrl from "../../../services/serverEndpoints";
 
@@ -13,7 +12,7 @@ export const SignUpService = async (action) => {
         confirmPassword: action.payload.confirmPassword,
 
     }
-    console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
+    console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@', action.payload.name)
     let result = await callService(apiUrl.register, "GET", jsonBody, action.payload.props,
         action.payload.cbError, action.payload.cbSuccess);
     return result;

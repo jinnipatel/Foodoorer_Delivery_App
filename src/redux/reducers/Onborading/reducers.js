@@ -1,4 +1,4 @@
-import { SET_ONBORADING_SUCCESS, SET_ONBORADING_FAILURE, types } from '../contants/action-types'
+import { SET_ONBORADING_SUCCESS, SET_ONBORADING_FAILURE } from '../contants/action-types'
 
 const initialState = {
     value: ''

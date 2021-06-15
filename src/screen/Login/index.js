@@ -12,14 +12,12 @@ import {
 import * as Animatable from 'react-native-animatable';
 import styles from './style';
 import Routes from '../../routes/routes';
-import { validation } from '../../utils/ValidationUtils';
 import { Color } from '../../utils/Color';
 import LinearGradient from 'react-native-linear-gradient';
 import CommonStyles from '../../utils/CommonStyles';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { getUser } from '../../redux/reducers/Login/action'
 import { loginUserAction } from '../../redux/reducers/Login/action'
 
 
@@ -77,7 +75,6 @@ class Login extends Component {
 
         }
       );
-      // this.fetchAll(param);
     });
   }
 
@@ -100,7 +97,6 @@ class Login extends Component {
     // }
     if (true) {
       this.loginUserRequest();
-
       // this.props.navigation.navigate(Routes.Auth, {
       //   email: this.state.email,
       //   password: this.state.password,
@@ -110,7 +106,6 @@ class Login extends Component {
 
   making_api_call = () => {
     if (this.checked_filed()) {
-      // this.props.navigation.navigate(Routes.Home);
       this.props.navigation.navigate(Routes.Home)
     }
   };
@@ -200,7 +195,6 @@ class Login extends Component {
 
               <View style={styles.button}>
                 <Button name="SignIn" onPress={() => this.making_api_call()} />
-                {/* <Button name="SignIn" onPress={() => alert("hello")} /> */}
               </View>
               <TouchableOpacity
                 onPress={() =>
@@ -237,20 +231,6 @@ class Login extends Component {
   }
 }
 
-// function mapStateToProps(state) {
-//   return {
-//     data: state.login
-//   }
-// }
-
-// const mapDispatchToProps = dispatch =>
-//   bindActionCreators({ getUser }, dispatch)    //action dispatch getuser
-
-// const mapDispatchToProps = dispatch => ({
-//   loginAction: (email, password) => dispatch(login(email, password))
-// })
-
-
 const mapStateToProps = (state) => {
   return {
     login: state.login
@@ -267,7 +247,6 @@ const mapDispatchToProps = dispatch =>
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)
-// export default Login;
 
 
 

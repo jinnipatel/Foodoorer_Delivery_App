@@ -8,7 +8,6 @@ import { Color } from '../../utils/Color';
 import styles from './style';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { onborading_screen } from '../../redux/reducers/Onborading/action'
 
 
@@ -38,54 +37,12 @@ const slides = [
 
 class Onborading extends Component {
 
-
-  // state = {
-  //   isOnboardingDone: false
-  // }
-
   render() {
     console.log("setonborading render", this.props.OnboardingDone)
 
     const onDone = () => {
       this.props.onDone();
     };
-
-
-    // componentDidMount()
-    // {
-    //   console.log('isOnboardingDone--', this.props.isOnboardingDone)
-    //   if (this.props.isOnboardingDone === null) {
-    //     this.setState({
-    //       onBoardingDone: false
-    //     })
-    //   }
-    //   else {
-    //     this.setState({
-    //       onBoardingDone: true
-    //     })
-    //   }
-
-    //   const isOnboardingDone = AsyncStorage.getItem('OnBoarding')
-    //   //  let parsed = JSON.parse(isOnboardingDone);
-    //   console.log('isOnboardingdone-async-', isOnboardingDone)
-
-    //   if (isOnboardingDone.done !== null) {
-    //     this.setState({
-    //       onBoardingDone: true
-    //     })
-    //   }
-    //   else {
-    //     this.setState({
-    //       onBoardingDone: false
-    //     })
-    //   }
-
-    // }
-
-
-
-
-
     const RenderNextButton = () => {
       return (
         <View style={styles.buttonCircle}>
@@ -122,7 +79,6 @@ class Onborading extends Component {
             letterSpacing={1}>
             {item.title}
           </Label>
-
           <View style={{ marginHorizontal: 20 }}>
             <Label align="center" large color={Color.ONBOARDING_TEXT} mb={10}>
               {item.text}
@@ -131,15 +87,12 @@ class Onborading extends Component {
         </View>
       );
     };
-
     return (
-
       <>
         {this.props.OnboardingDone === true ? (
           this.props.navigation.navigate(Routes.Signup)
         ) : (<View style={{ flex: 1 }}>
           <StatusBar hidden={true} />
-
           <AppIntroSlider
             data={slides}
             renderItem={RenderItem}
@@ -155,27 +108,10 @@ class Onborading extends Component {
     );
   }
 };
-
-// const mapStateToProps = state => ({
-//   isOnboardingDone: state.onBoarding.val.onBoarding,
-// });
-
-// const mapDispatchToProps = dispatch => 
-//   bindActionCreators(
-//     {
-//       onBoardingDone,
-//     },
-//     dispatch,
-//   );
-
 const mapStateToProps = state =>
-// console.log('------Onboarding map -------', state)
 ({
-  // OnboardingDone: state.onborading.value.onborading,
   OnboardingDone: state.onborading.value
 });
-
-
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
@@ -183,12 +119,4 @@ const mapDispatchToProps = dispatch =>
     },
     dispatch
   );
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     loadOnboarding: () => dispatch(onborading_screen)
-//   }
-// }
-
-
 export default connect(mapStateToProps, mapDispatchToProps)(Onborading);

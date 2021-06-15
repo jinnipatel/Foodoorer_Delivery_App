@@ -1,4 +1,3 @@
-// import { callService } from "../../../services";
 import { callService } from "../../../services"
 import apiUrl from "../../../services/serverEndpoints";
 

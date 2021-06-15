@@ -1,15 +1,13 @@
-import React, {Component} from 'react';
-import {TouchableOpacity} from 'react-native';
-import {Text, View, Modal, Image} from 'react-native';
+import React, { Component } from 'react';
+import { TouchableOpacity } from 'react-native';
+import { View, Modal, Image } from 'react-native';
 import MapView from 'react-native-maps';
-import {Marker} from 'react-native-maps';
-import {Button, Card, Label, SocialButton, Status} from '../../component';
+import { Marker } from 'react-native-maps';
+import { Button, Label, SocialButton, Status } from '../../component';
 import Routes from '../../routes/routes';
-import {Color, ThemeUtils} from '../../utils';
+import { Color } from '../../utils';
 import RadioButtonRN from 'radio-buttons-react-native';
-import {SocialIcon} from 'react-native-elements/dist/social/SocialIcon';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {SafeAreaView} from 'react-native';
 import Styles from './Styles';
 
 const data = [
@@ -34,13 +32,13 @@ export class CustomerMapScreen extends Component {
       show: true,
       modelshow: false,
       doneModelShow: false,
-      isFinishBtn:true
+      isFinishBtn: true
     };
   }
 
-  enableButton=()=>{
+  enableButton = () => {
     setTimeout(() => {
-      this.setState({isFinishBtn:false})
+      this.setState({ isFinishBtn: false })
     }, 2000);
   }
 
@@ -60,7 +58,7 @@ export class CustomerMapScreen extends Component {
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }}>
-          <Marker coordinate={{latitude: 23.033863,longitude:  72.585022}} />
+          <Marker coordinate={{ latitude: 23.033863, longitude: 72.585022 }} />
         </MapView>
 
         <View>
@@ -75,7 +73,7 @@ export class CustomerMapScreen extends Component {
                   style={Styles.modelImag}
                   resizeMode='contain'
                 />
-                <View style={{marginStart: 20}}>
+                <View style={{ marginStart: 20 }}>
                   <Label large color={Color.PRIMARY_DARK}>
                     Charies W.Abeyta
                   </Label>
@@ -90,7 +88,7 @@ export class CustomerMapScreen extends Component {
                   <View style={Styles.ConatinerView}>
                     <TouchableOpacity
                       onPress={() =>
-                        this.setState({modelshow: true, show: true})
+                        this.setState({ modelshow: true, show: true })
                       }>
                       <Image
                         source={require('../../assets/Img/call_logo.png')}
@@ -103,17 +101,17 @@ export class CustomerMapScreen extends Component {
                       <View style={Styles.SecondModelView}>
                         <View style={Styles.secondContainer}>
                           <Label xlarge>Select Reason For Calling</Label>
-                          <View style={{marginTop: 10}}>
+                          <View style={{ marginTop: 10 }}>
                             <RadioButtonRN
                               data={data}
                               selectedBtn={e => console.log(e)}
                             />
                           </View>
-                          <View style={{marginTop: 20}}>
+                          <View style={{ marginTop: 20 }}>
                             <Button
                               name="submit"
                               onPress={() => {
-                                this.setState({modelshow: false});
+                                this.setState({ modelshow: false });
                                 this.enableButton()
                               }}
                             />
@@ -124,11 +122,11 @@ export class CustomerMapScreen extends Component {
 
                     <SocialButton
                       btntext="Finish"
-                      bgColor={this.state.isFinishBtn?Color.LIGHT_GRAY:null}
-                      onPress={() => this.setState({doneModelShow: true})}
+                      bgColor={this.state.isFinishBtn ? Color.LIGHT_GRAY : null}
+                      onPress={() => this.setState({ doneModelShow: true })}
                       source={require('../../assets/Img/right_logo.png')}
                       disabled={this.state.isFinishBtn}
-                    />  
+                    />
                   </View>
                 </View>
               </View>
@@ -141,7 +139,7 @@ export class CustomerMapScreen extends Component {
                 <Icon
                   name="thumbs-up"
                   size={65}
-                  style={{marginTop: 40}}
+                  style={{ marginTop: 40 }}
                   color={Color.PRIMARY}
                 />
                 <Label mt={10} xlarge color={Color.PRIMARY_DARK}>
@@ -153,7 +151,7 @@ export class CustomerMapScreen extends Component {
                 <Label mt={20} large>
                   Earned by you!
                 </Label>
-                <View style={{marginTop: 10}}>
+                <View style={{ marginTop: 10 }}>
                   <SocialButton
                     btntext="Done"
                     source={require('../../assets/Img/right_logo.png')}

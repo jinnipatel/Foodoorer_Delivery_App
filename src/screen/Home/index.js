@@ -66,8 +66,6 @@ export class Home extends Component {
           iconName="notifications"
           onClick={() => this.props.navigation.navigate(Routes.Notifications)}
         />
-        {/* <Button name="Logout" onPress={() => this.removeAuthentication()} /> */}
-
         <View>
 
           <View
@@ -80,7 +78,6 @@ export class Home extends Component {
               alignItems: 'center',
               justifyContent: 'flex-end',
             }}>
-            {/* <Header></Header> */}
             <Status hidden={true} />
             <MapView
               style={{ flex: 1, position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
@@ -93,17 +90,6 @@ export class Home extends Component {
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421,
               }}>
-              {/* // onRegionChange={region => {
-          //   this.setState({
-          //     latitude: region.latitude,
-          //     longitude: region.longitude,
-          //   });
-          // }}
-          // onRegionChangeComplete={region => {
-          //   this.setState({
-          //     latitude: region.latitude,
-          //     longitude: region.longitude,
-          //   }) }}  */}
               <Marker coordinate={{ latitude: this.state.location.latitude, longitude: this.state.location.longitude }}
                 title="JOHN DON"
                 description="Live Location" />
@@ -135,15 +121,12 @@ export class Home extends Component {
                     style={{
                       width: ThemeUtils.relativeHeight(10),
                       height: ThemeUtils.relativeHeight(10),
-                      // marginLeft: 20,
-                      // marginRight:50,
-                      // marginTop: 10,
                     }}
                   />
                   <View style={{ flexDirection: 'column' }}>
                     <Label ms={20} large color={Color.PRIMARY} >
                       JOHN DON
-                  </Label>
+                    </Label>
                     <Label ms={20} small color={Color.PRIMARY_DARK}>11:30 AM</Label>
                     <Label ms={20} xsmall color={Color.DARK_GRAY}>Location</Label>
                   </View>
@@ -169,31 +152,6 @@ export class Home extends Component {
                 <Label small color={Color.PRIMARY}>Rs.44</Label>
               </View>
             </View>
-            {/* <View style={{marginHorizontal:20,marginTop:10}}>
-              <View style={{flexDirection:'row',justifyContent:'space-evenly'}}>
-                <View style={{justifyContent:'center',alignItems:'center'}}>
-                  <Image source={require("../../assets/Img/right_logo.png")} style={{width:ThemeUtils.relativeWidth(15),height:ThemeUtils.relativeHeight(10)}} />
-                  <Label>80%</Label>
-                  <Label>Acceptance</Label>
-                </View>
-                <View style={{justifyContent:'center',alignItems:'center'}}>
-                  <Image source={require("../../assets/Img/star_logo.png")} style={{width:ThemeUtils.relativeWidth(15),height:ThemeUtils.relativeHeight(10)}} />
-                  <Label>4.5</Label>
-                  <Label>Rating</Label>
-                </View>
-                <View style={{justifyContent:'center',alignItems:'center'}}>
-                  <Image source={require("../../assets/Img/close_logo.png")} style={{width:ThemeUtils.relativeWidth(11),height:ThemeUtils.relativeHeight(6)}} />
-                 
-                  <Label>3</Label>
-                  <Label>Cancelled</Label>
-                 
-                </View>
-                
-              </View>
-
-            </View>   // safg */}
-
-            {/* <TouchableOpacity></TouchableOpacity> */}
           </View>
         </View>
         <Modal
@@ -203,12 +161,8 @@ export class Home extends Component {
           <View style={{ backgroundColor: '#000000aa', flex: 1 }}>
             <View
               style={{
-                // backgroundColor:Color.PRIMARY_DARK,
                 backgroundColor: Color.WHITE,
                 borderRadius: 25,
-                // margin: 25,
-                // marginHorizontal:50,
-                // marginHorizontal:10,
                 paddingHorizontal: 20,
                 padding: 10,
                 alignSelf: 'center',
@@ -223,8 +177,6 @@ export class Home extends Component {
                   width: ThemeUtils.responsiveHeight(100),
                   height: ThemeUtils.responsiveHeight(100),
                   alignSelf: 'center',
-                  // margin: 25,
-                  // marginTop: 50,
                 }}
               />
               <Label align="center" mb={10} xxlarge color={Color.PRIMARY}>
@@ -234,10 +186,6 @@ export class Home extends Component {
                 style={{
                   flexDirection: 'row',
                   justifyContent: 'space-between',
-                  // marginTop: 30,
-                  // backgroundColor:Color.ERROR
-
-
                 }}>
                 <View>
                   <Label large color={Color.PRIMARY_DARK}>
@@ -260,7 +208,6 @@ export class Home extends Component {
                 <Label xlarge>
                   Restaurant Address
                 </Label>
-                {/* <Image source={require("../../assets/Img/mcD_logo.png")} style={{width:ThemeUtils.relativeWidth(30),height:ThemeUtils.responsiveHeight(50)}}/> */}
                 <Label small color={Color.DARK_GRAY}>
                   McDonald's Restaurant
                 </Label>
@@ -276,25 +223,9 @@ export class Home extends Component {
                 style={{
                   flexDirection: 'row',
                   justifyContent: 'center',
-                  // paddingBottom: 15,
-                  // marginTop: 20,
                   marginTop: 5,
                   marginBottom: 5,
-                  // backgroundColor:Color.PRIMARY_DARK
                 }}>
-                {/* <SocialButton
-                  btntext="Accept"
-                  textStyle={{fontSize:18,}}
-                  onPress={() =>
-                    this.props.navigation.navigate(Routes.RestaurantMapScreen)
-                  }
-                  source={require('../../assets/Img/right_logo.png')}
-                />
-                <SocialButton
-                  btntext="Decline"
-                  source={require('../../assets/Img/cancel_logo.png')}
-                  onPress={() => this.setState({modelshow: true, show: false})}
-                /> */}
                 <TouchableOpacity onPress={() => { this.props.navigation.navigate(Routes.RestaurantMapScreen) }}>
                   <Image source={require("../../assets/Img/yes.png")} resizeMode="contain" style={{ width: ThemeUtils.relativeWidth(25), height: ThemeUtils.responsiveHeight(60) }} />
                 </TouchableOpacity>
@@ -311,9 +242,8 @@ export class Home extends Component {
             <View style={{ height: ThemeUtils.relativeHeight(50), width: ThemeUtils.relativeWidth(90), backgroundColor: "#ffffff", borderRadius: 10 }}>
               <Label mt={75} large align="center" color={Color.PRIMARY_DARK} me={20}>
                 Write Specific Reason for not Delivering the order
-                         </Label>
+              </Label>
               <View style={{ marginTop: 25 }}>
-                {/* <TextInput placeholder="Type Something Here"/> */}
                 <InputText placeholder="Type Something Here" />
                 <View style={{ marginTop: 20 }}>
                   <Button name="Send" onPress={() => this.props.navigation.push(Routes.Home)} />

@@ -1,5 +1,5 @@
-import {Platform, StyleSheet} from 'react-native';
-import {Color} from '../../utils/Color';
+import { Platform, StyleSheet } from 'react-native';
+import { Color } from '../../utils/Color';
 import ThemeUtils from '../../utils/ThemeUtils';
 
 const styles = StyleSheet.create({
@@ -16,11 +16,8 @@ const styles = StyleSheet.create({
   logo: {
     height: 200,
     width: "80%",
-    // height:ThemeUtils.responsiveHeight(200),
-    // width:ThemeUtils.responsiveHeight(80),
-    // alignItems: 'center',
-    alignSelf:'center',
-    
+    alignSelf: 'center',
+
   },
   footer: {
     position: 'absolute',

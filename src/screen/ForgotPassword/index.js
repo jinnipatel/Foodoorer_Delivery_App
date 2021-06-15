@@ -1,16 +1,15 @@
-import React, {Component} from 'react';
-import {View, KeyboardAvoidingView, Keyboard} from 'react-native';
+import React, { Component } from 'react';
+import { View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {Button, ImageComp, InputText, Label, Status} from '../../component';
-import {Color} from '../../utils/Color';
+import { Button, ImageComp, InputText, Label, Status } from '../../component';
+import { Color } from '../../utils/Color';
 import styles from './style';
 import * as Animatable from 'react-native-animatable';
 import Routes from '../../routes/routes';
-import {validation} from '../../utils/ValidationUtils';
+import { validation } from '../../utils/ValidationUtils';
 import CommonStyles from '../../utils/CommonStyles';
-import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import { SafeAreaView } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
 
 export class ForgotPassword extends Component {
   constructor() {
@@ -50,12 +49,11 @@ export class ForgotPassword extends Component {
       <View style={styles.container}>
         <LinearGradient
           colors={[Color.GRADIENT3, Color.GRADIENT4]}
-          start={{x: 0, y: 1}}
-          end={{x: 1, y: 0}}
+          start={{ x: 0, y: 1 }}
+          end={{ x: 1, y: 0 }}
           style={CommonStyles.linerGradient}>
           <KeyboardAwareScrollView
-            // style={{flex: 1}}
-            resetScrollToCoords={{x: 0, y: 0}}
+            resetScrollToCoords={{ x: 0, y: 0 }}
             scrollEnabled={true}
             enableResetScrollToCoords={false}
             showsVerticalScrollIndicator={false}
@@ -63,7 +61,7 @@ export class ForgotPassword extends Component {
             enableOnAndroid={true}
             keyboardShouldPersistTaps="always">
             <Status hidden={true} />
-            <View style={{marginBottom:20,marginTop:150}}>
+            <View style={{ marginBottom: 20, marginTop: 150 }}>
               <ImageComp />
             </View>
             <Animatable.View
@@ -85,19 +83,18 @@ export class ForgotPassword extends Component {
               <InputText
                 name="email"
                 placeholder="Enter Email"
-                onChangeText={text => this.setState({email: text})}
+                onChangeText={text => this.setState({ email: text })}
               />
               <Label small ms={30} mb={10} color={Color.ERROR}>
                 {this.state.emailError}
               </Label>
-              <View style={{paddingBottom: 10}}>
+              <View style={{ paddingBottom: 10 }}>
                 <Button name="Continue" onPress={this.check_Validation} />
               </View>
             </Animatable.View>
           </KeyboardAwareScrollView>
         </LinearGradient>
       </View>
-      // </SafeAreaView>
     );
   }
 }

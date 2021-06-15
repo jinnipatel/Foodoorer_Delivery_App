@@ -8,15 +8,8 @@ import { Label, Status } from '../../component'
 import { Color, ThemeUtils } from '../../utils'
 
 
-
-
-
 export class Notifications extends Component {
-
-
-
     render() {
-
         return (
             <SafeAreaView>
                 <Status hidden={true} />
@@ -25,7 +18,6 @@ export class Notifications extends Component {
                         <Icons name="notifications" size={40} />
                         <Label color={Color.PRIMARY_DARK} ms={40} xlarge bolder>Notifications</Label>
                     </View>
-
                     <FlatList
                         data={
                             [
@@ -87,8 +79,6 @@ export class Notifications extends Component {
                                     width: 0,
                                     height: 5,
                                 },
-                                // width: ThemeUtils.relativeWidth(95),
-                                // height: ThemeUtils.relativeHeight(25),
                                 shadowOpacity: 0.34,
                                 shadowRadius: 6.27,
                                 elevation: 10,
@@ -100,9 +90,7 @@ export class Notifications extends Component {
                                 </View>
                             </View>
                         )}
-
                     />
-
                 </View>
             </SafeAreaView>
 

@@ -14,8 +14,8 @@ import CommonStyles from '../../utils/CommonStyles';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { createUser } from '../../redux/reducers/Signup/action'
 import { registerUserAction } from '../../redux/reducers/Signup/action'
+
 
 class Signup extends Component {
   constructor(props) {
@@ -39,69 +39,35 @@ class Signup extends Component {
   }
 
 
-
-  // _createUser = param => {
-  //   this.props.createUser(param)
-  // };
-
   SignUpUserRequest = async () => {
     console.log('User Clicked');
-    // const { email, password } = this.state;
-    // this.setState({ visibility: true }, () => {
     const { name, email, password, phoneNo } = this.state;
     this.setState({ visibility: true }, () => {
       console.log('~~~~~~~~~~~~~~~~~~~')
       let param =
       {
+        // name: this.props.name,
+        // email: this.props.email,
+        // phoneNo: this.props.phoneNo,
+        // password: this.props.password
         name: "xyz",
-        email: "d@gmail.com",
+        email: "xyz@gmail.com",
         phoneNo: 9876543219,
         password: 123456,
+
+
       };
       this.props.registerUserAction(param, this.props,
         cbError = err => {
           console.log(err)
-
         },
         cbSuccess = err => {
           console.log("Hello World")
-
         }
       );
-      // this.fetchAll(param);
     });
-    // this.props.createUser(obj);
-    // })
     this.props.navigation.dispatch(this.resetToAuth);
   }
-
-  // SignUpUserRequest = async () => {
-  //   console.log('Signup User clicked');
-
-  //   const { name, email, password, phoneNo } = this.state;
-  //   this.setState({ visibility: true }, () => {
-  //     let param =
-  //     {
-  //       name: "xyz",
-  //       email: "d@gmail.com",
-  //       phoneNo: 9876543219,
-  //       password: 123456,
-  //     };
-  //     this.props.registerUserAction(param, this.props,
-  //       cbError = err => {
-  //         console.log(err)
-
-  //       },
-  //       cbSuccess = err => {
-  //         console.log("Hello World")
-
-  //       }
-  //     );
-  //     // this.fetchAll(param);
-  //   });
-  // }
-
-
   check_validate = () => {
     let firstnamerror,
       emailError,
@@ -150,12 +116,9 @@ class Signup extends Component {
         password: this.state.password,
         confirmPassword: this.state.confirmPassword,
       };
-      // AsyncStorage.setItem('signup_data', JSON.stringify(obj));
-      // alert('SignUp SuccessFully Completed');
+      AsyncStorage.setItem('signup_data', JSON.stringify(obj));
       console.log("SignUp Obj", obj)
       this.SignUpUserRequest(obj)
-      // this.props.navigation.dispatch(this.resetToAuth);
-      // this.props.navigation.navigate(Routes.Home)
     }
   };
   resetToAuth = CommonActions.reset({
@@ -177,7 +140,7 @@ class Signup extends Component {
 
   render() {
     let { user } = this.props.signup;
-    console.log(user, "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj")
+    console.log(user, "jjjjjjjjjjjjj")
     return (
       <SafeAreaView style={CommonStyles.container}>
         <LinearGradient
@@ -309,7 +272,6 @@ class Signup extends Component {
     );
   }
 }
-// export default Signup;
 function mapStateToProps(state) {
   return {
     signup: state.signup

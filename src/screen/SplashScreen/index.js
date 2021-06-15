@@ -1,11 +1,11 @@
-import {CommonActions} from '@react-navigation/routers';
+import { CommonActions } from '@react-navigation/routers';
 import React from 'react';
-import {View, Text, Image} from 'react-native';
+import { View, Image } from 'react-native';
 import styles from './style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Routes from '../../routes/routes';
-import {Label, Status} from '../../component';
-import {Color} from '../../utils/Color';
+import { Label, Status } from '../../component';
+import { Color } from '../../utils/Color';
 
 class SplashScreen extends React.Component {
   resetToAuth = CommonActions.reset({
