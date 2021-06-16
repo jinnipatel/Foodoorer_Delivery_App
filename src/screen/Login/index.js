@@ -19,6 +19,9 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { loginUserAction } from '../../redux/reducers/Login/action'
+import { Snackbar } from 'react-native-paper'
+import { validation } from '../../utils';
+
 
 
 class Login extends Component {
@@ -55,9 +58,16 @@ class Login extends Component {
   //   })
   // }
 
+  showMessage = () => {
+    Snackbar.show({
+      text: 'SignUp Successfully',
+      duration: Snackbar.LENGTH_SHORT,
+    });
+  };
+
   loginUserRequest = async () => {
     console.log('login User clicked');
-
+    // this.props.navigation.navigate(Routes.Home)
     const { email, password } = this.state;
     this.setState({ visibility: true }, () => {
       let param =
@@ -66,21 +76,21 @@ class Login extends Component {
         password: 123456,
       };
       this.props.loginUserAction(param, this.props,
+
         cbError = err => {
           console.log(err)
-
         },
         cbSuccess = err => {
           console.log("Hello World")
-
+          // this.props.navigation.navigate(Routes.Home)
         }
       );
     });
   }
 
   checked_filed = () => {
-    let emailError, PasswordError, isValid;
-    // emailError = validation('email', this.state.email);
+    // let emailError, PasswordError, isValid;
+    // emailError = validation('email', this.state.enail)
     // PasswordError = validation('password', this.state.password);
     // if (emailError != null || PasswordError != null) {
     //   this.setState({
@@ -97,12 +107,15 @@ class Login extends Component {
     // }
     if (true) {
       this.loginUserRequest();
+      // this.props.navigation.navigate(Routes.Home)
+
       // this.props.navigation.navigate(Routes.Auth, {
       //   email: this.state.email,
       //   password: this.state.password,
       // });
     }
   };
+
 
   making_api_call = () => {
     if (this.checked_filed()) {
@@ -195,6 +208,7 @@ class Login extends Component {
 
               <View style={styles.button}>
                 <Button name="SignIn" onPress={() => this.making_api_call()} />
+                {/* <Button name="SignIn" onPress={() => { alert("Hello") }} /> */}
               </View>
               <TouchableOpacity
                 onPress={() =>

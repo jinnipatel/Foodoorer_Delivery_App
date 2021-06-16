@@ -15,7 +15,8 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { registerUserAction } from '../../redux/reducers/Signup/action'
-
+// import { Snackbar } from 'react-native-paper'
+import Snackbar from 'react-native-snackbar';
 
 class Signup extends Component {
   constructor(props) {
@@ -41,6 +42,7 @@ class Signup extends Component {
 
   SignUpUserRequest = async () => {
     console.log('User Clicked');
+    this.showMessage()
     const { name, email, password, phoneNo } = this.state;
     this.setState({ visibility: true }, () => {
       console.log('~~~~~~~~~~~~~~~~~~~')
@@ -63,9 +65,11 @@ class Signup extends Component {
         },
         cbSuccess = err => {
           console.log("Hello World")
+
         }
       );
     });
+    // this.showMessage()
     this.props.navigation.dispatch(this.resetToAuth);
   }
   check_validate = () => {
@@ -136,6 +140,13 @@ class Signup extends Component {
     this.state.isConformPassword
       ? this.setState({ isConformPassword: false, toggleIcon1: 'eye' })
       : this.setState({ isConformPassword: true, toggleIcon1: 'eye-closed' });
+  };
+
+  showMessage = () => {
+    Snackbar.show({
+      text: 'SignUp Successfully',
+      duration: Snackbar.LENGTH_SHORT,
+    });
   };
 
   render() {
