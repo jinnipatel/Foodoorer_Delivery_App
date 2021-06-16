@@ -3,12 +3,14 @@ import apiUrl from "../../../services/serverEndpoints";
 
 export const loginService = async (action) => {
     console.log("Hello Services")
+    // console.log("***************", action.payload)
     let jsonBody =
     {
-        email: action.payload.param.email,
-        password: action.payload.param.password
+        Email: action.payload.param.email,
+        Password: action.payload.param.password
     }
-    let result = await callService(apiUrl.login, "GET", jsonBody, action.payload.props,
+    let result = await callService(apiUrl.login, "POST", jsonBody, action.payload.props,
         action.payload.cbError, action.payload.cbSuccess);
+    // console.log("result------------", result)
     return result;
 }

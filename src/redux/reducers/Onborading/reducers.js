@@ -5,16 +5,16 @@ const initialState = {
 }
 
 const onboradingReducer = (state = initialState, action) => {
-    console.log("Reducers ", action.payload)
+    // console.log("Reducers ", action.payload)
     switch (action.type) {
         case SET_ONBORADING_SUCCESS:
-            console.log("Reducers Set_onboarding_success", action.payload)
+            // console.log("Reducers Set_onboarding_success", action.payload)
             return {
                 ...state,
                 value: action.payload
             }
         case SET_ONBORADING_FAILURE:
-            console.log("Reducers Set_onboarding_failure".action.payload)
+            // console.log("Reducers Set_onboarding_failure".action.payload)
             return {
                 ...state,
                 value: action.payload

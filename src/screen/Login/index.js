@@ -72,8 +72,8 @@ class Login extends Component {
     this.setState({ visibility: true }, () => {
       let param =
       {
-        email: "d@gmail.com",
-        password: 123456,
+        email: this.state.email,
+        password: this.state.password,
       };
       this.props.loginUserAction(param, this.props,
 
