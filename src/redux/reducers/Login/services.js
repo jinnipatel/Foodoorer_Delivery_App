@@ -6,8 +6,8 @@ export const loginService = async (action) => {
     // console.log("***************", action.payload)
     let jsonBody =
     {
-        Email: action.payload.param.email,
-        Password: action.payload.param.password
+        email: action.payload.param.email,
+        password: action.payload.param.password
     }
     let result = await callService(apiUrl.login, "POST", jsonBody, action.payload.props,
         action.payload.cbError, action.payload.cbSuccess);

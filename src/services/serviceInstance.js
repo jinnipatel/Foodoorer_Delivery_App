@@ -2,7 +2,7 @@ import axios from 'axios';
 import store from '../redux/store';
 
 let axiosInstance = axios.create({
-    baseURL: "http://transportapp.project-demo.info:8073/api/UserAccount",
+    baseURL: "http://foodooerdashboard.project-demo.info/api/customer",
     timeout: 15000
 });
 

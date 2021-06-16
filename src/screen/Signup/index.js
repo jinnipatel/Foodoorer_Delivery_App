@@ -52,10 +52,11 @@ class Signup extends Component {
         // email: this.props.email,
         // phoneNo: this.props.phoneNo,
         // password: this.props.password
-        name: "xyz",
-        email: "xyz@gmail.com",
-        phoneNo: 9876543219,
-        password: 123456,
+        name: this.state.name,
+        email: this.state.email,
+        phoneNo: this.state.phoneNo,
+        password: this.state.password,
+
 
 
       };
@@ -70,7 +71,7 @@ class Signup extends Component {
       );
     });
     // this.showMessage()
-    this.props.navigation.dispatch(this.resetToAuth);
+    // this.props.navigation.dispatch(this.resetToAuth);
   }
   check_validate = () => {
     let firstnamerror,

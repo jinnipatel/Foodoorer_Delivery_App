@@ -1,5 +1,5 @@
 const apiUrl = {
     login: `/login`,
-    register: `/createUser`
+    register: `/register`
 }
 export default apiUrl;
