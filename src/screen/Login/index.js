@@ -19,7 +19,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { loginUserAction } from '../../redux/reducers/Login/action'
-import { Snackbar } from 'react-native-paper'
+// import { Snackbar } from 'react-native-paper'
 import { validation } from '../../utils';
 
 
@@ -58,16 +58,15 @@ class Login extends Component {
   //   })
   // }
 
-  showMessage = () => {
-    Snackbar.show({
-      text: 'SignUp Successfully',
-      duration: Snackbar.LENGTH_SHORT,
-    });
-  };
+  // showMessage = () => {
+  //   Snackbar.show({
+  //     text: 'Login Successfully',
+  //     duration: Snackbar.LENGTH_SHORT,
+  //   });
+  // };
 
   loginUserRequest = async () => {
     console.log('login User clicked');
-    // this.props.navigation.navigate(Routes.Home)
     const { email, password } = this.state;
     this.setState({ visibility: true }, () => {
       let param =
@@ -76,14 +75,13 @@ class Login extends Component {
         password: this.state.password,
       };
       this.props.loginUserAction(param, this.props,
+        // cbError = err => {
+        //   console.log(err)
+        // },
+        // cbSuccess = err => {
+        //   console.log("Hello World")
 
-        cbError = err => {
-          console.log(err)
-        },
-        cbSuccess = err => {
-          console.log("Hello World")
-          // this.props.navigation.navigate(Routes.Home)
-        }
+        // }
       );
     });
   }
@@ -119,7 +117,7 @@ class Login extends Component {
 
   making_api_call = () => {
     if (this.checked_filed()) {
-      this.props.navigation.navigate(Routes.Home)
+      // this.props.navigation.navigate(Routes.Home)
     }
   };
 
@@ -131,7 +129,7 @@ class Login extends Component {
 
   render() {
     let { user } = this.props.login;
-    console.log(user, "kkkkkkkkkkkkkkkkkkkkkk")
+    console.log(this.props.login, "kkkkkkkkkkkkkkkkkkkkkk")
     return (
 
       <SafeAreaView style={CommonStyles.container}>
@@ -247,7 +245,9 @@ class Login extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    login: state.login
+    login: state.login,
+
+
   };
 }
 

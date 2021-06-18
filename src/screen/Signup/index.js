@@ -15,8 +15,8 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { registerUserAction } from '../../redux/reducers/Signup/action'
-// import { Snackbar } from 'react-native-paper'
-import Snackbar from 'react-native-snackbar';
+// // import { Snackbar } from 'react-native-paper'
+// import Snackbar from 'react-native-snackbar';
 
 class Signup extends Component {
   constructor(props) {
@@ -42,7 +42,7 @@ class Signup extends Component {
 
   SignUpUserRequest = async () => {
     console.log('User Clicked');
-    this.showMessage()
+    // this.showMessage()
     const { name, email, password, phoneNo } = this.state;
     this.setState({ visibility: true }, () => {
       console.log('~~~~~~~~~~~~~~~~~~~')
@@ -60,14 +60,15 @@ class Signup extends Component {
 
 
       };
+      debugger
       this.props.registerUserAction(param, this.props,
-        cbError = err => {
-          console.log(err)
-        },
-        cbSuccess = err => {
-          console.log("Hello World")
+        // cbError = err => {
+        //   console.log(err)
+        // },
+        // cbSuccess = err => {
+        //   console.log("Hello World")
 
-        }
+        // }
       );
     });
     // this.showMessage()
@@ -80,14 +81,14 @@ class Signup extends Component {
       passwordError,
       confirmpasswordError,
       isValid;
-    firstnamerror = validation('name', this.state.name);
-    emailError = validation('email', this.state.email);
-    phoneErrorValidation = validation('phoneNo', this.state.phoneNo);
-    passwordError = validation('password', this.state.password);
-    confirmpasswordError = PasswordValidate(
-      this.state.password,
-      this.state.confirmPassword,
-    );
+    // firstnamerror = validation('name', this.state.name);
+    // emailError = validation('email', this.state.email);
+    // phoneErrorValidation = validation('phoneNo', this.state.phoneNo);
+    // passwordError = validation('password', this.state.password);
+    // confirmpasswordError = PasswordValidate(
+    //   this.state.password,
+    //   this.state.confirmPassword,
+    // );
     if (
       firstnamerror != null ||
       emailError != null ||
@@ -121,15 +122,15 @@ class Signup extends Component {
         password: this.state.password,
         confirmPassword: this.state.confirmPassword,
       };
-      AsyncStorage.setItem('signup_data', JSON.stringify(obj));
-      console.log("SignUp Obj", obj)
-      this.SignUpUserRequest(obj)
+      // AsyncStorage.setItem('signup_data', JSON.stringify(obj));
+      // console.log("SignUp Obj", obj)
+      this.SignUpUserRequest()
     }
   };
-  resetToAuth = CommonActions.reset({
-    index: 0,
-    routes: [{ name: Routes.Authenticated }],
-  });
+  // resetToAuth = CommonActions.reset({
+  //   index: 0,
+  //   routes: [{ name: Routes.Authenticated }],
+  // });
 
   IconToggle = () => {
     this.state.isSecurePassword
@@ -143,16 +144,16 @@ class Signup extends Component {
       : this.setState({ isConformPassword: true, toggleIcon1: 'eye-closed' });
   };
 
-  showMessage = () => {
-    Snackbar.show({
-      text: 'SignUp Successfully',
-      duration: Snackbar.LENGTH_SHORT,
-    });
-  };
+  // showMessage = () => {
+  //   Snackbar.show({
+  //     text: 'SignUp Successfully',
+  //     duration: Snackbar.LENGTH_SHORT,
+  //   });
+  // };
 
   render() {
     let { user } = this.props.signup;
-    console.log(user, "jjjjjjjjjjjjj")
+    console.log(this.props.signup, "jjjjjronaldjjjjjjjj")
     return (
       <SafeAreaView style={CommonStyles.container}>
         <LinearGradient
@@ -285,6 +286,7 @@ class Signup extends Component {
   }
 }
 function mapStateToProps(state) {
+  console.log("----------", state)
   return {
     signup: state.signup
   }

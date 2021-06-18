@@ -9,8 +9,11 @@ export const loginService = async (action) => {
         email: action.payload.param.email,
         password: action.payload.param.password
     }
+    debugger
     let result = await callService(apiUrl.login, "POST", jsonBody, action.payload.props,
         action.payload.cbError, action.payload.cbSuccess);
     // console.log("result------------", result)
+    debugger
     return result;
+    debugger
 }

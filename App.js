@@ -27,6 +27,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import store from './src/redux/store';
 import RootNavigator from './src/routes';
 import { persistor } from './src/redux/store';
+import MapScreen from './src/screen/MapScreen';
 
 
 
@@ -46,6 +47,8 @@ const App = () => {
         </View>
       </PersistGate>
     </Provider>
+
+    // <MapScreen />
   );
 };
 

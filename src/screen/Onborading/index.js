@@ -9,6 +9,7 @@ import styles from './style';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { onborading_screen } from '../../redux/reducers/Onborading/action'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
@@ -37,12 +38,27 @@ const slides = [
 
 class Onborading extends Component {
 
-  render() {
-    console.log("setonborading render", this.props.OnboardingDone)
 
-    const onDone = () => {
-      this.props.onDone();
-    };
+  onDone = () => {
+    this.props.onDone();
+  };
+  // componentDidMount() {
+  //   this.check();
+  // }
+
+  // state = {
+  //   onBoradingDone: false
+  // }
+  // onDone = () => {
+  //   this.setState({ onBoradingDone: true });
+  //   AsyncStorage.setItem("bordingStatus", true)
+  //   this.props.navigation.navigate(Routes.NotAuthenticated)
+  // }
+
+  render() {
+    console.log("setonborading render", this.props.onBoradingDone)
+
+
     const RenderNextButton = () => {
       return (
         <View style={styles.buttonCircle}>
@@ -54,10 +70,10 @@ class Onborading extends Component {
     const RenderDoneButton = () => {
       return (
         <TouchableOpacity onPress={() => {
-          this.props.onborading_screen(true)
-          console.log("setonborading", this.props.OnboardingDone)
-          this.props.navigation.navigate(Routes.Login)
+          this.props.onborading_screen(true);
+          this.props.navigation.navigate(Routes.Login);
         }}>
+
           <View style={styles.buttonCircle}>
             <Icon
               name="thumbs-up"
@@ -96,7 +112,7 @@ class Onborading extends Component {
           <AppIntroSlider
             data={slides}
             renderItem={RenderItem}
-            onDone={onDone}
+            onDone={this.onDone}
             renderDoneButton={RenderDoneButton}
             renderNextButton={RenderNextButton}
             dotStyle={styles.dotStyle}
@@ -120,3 +136,4 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 export default connect(mapStateToProps, mapDispatchToProps)(Onborading);
+// export default Onborading

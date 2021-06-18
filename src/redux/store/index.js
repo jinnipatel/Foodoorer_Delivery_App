@@ -8,6 +8,8 @@ console.log("Hello Store")
 const persistConfig = {
     key: 'root',
     storage: AsyncStorage,
+    // blackList: [],
+    // whiteList: "onborading",
 
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer)

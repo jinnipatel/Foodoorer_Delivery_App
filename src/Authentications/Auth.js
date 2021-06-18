@@ -1,10 +1,10 @@
-import {CommonActions} from '@react-navigation/routers';
-import React, {Component} from 'react';
-import {View} from 'react-native';
+import { CommonActions } from '@react-navigation/routers';
+import React, { Component } from 'react';
+import { View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Routes from '../routes/routes';
-import {Loader} from '../component';
-import {Color} from '../utils/Color';
+import { Loader } from '../component';
+import { Color } from '../utils/Color';
 
 export default class Auth extends Component {
   constructor(props) {
@@ -14,12 +14,12 @@ export default class Auth extends Component {
       password: ' ',
     };
   }
-  componentDidMount() {
-    const {email, password} = this.props.route.params;
-    debugger;
-    this.setState({email: email, password: password});
-    this.check();
-  }
+  // componentDidMount() {
+  //   const {email, password} = this.props.route.params;
+  //   debugger;
+  //   this.setState({email: email, password: password});
+  //   this.check();
+  // }
   resetToAuth = CommonActions.reset({
     index: 0,
     routes: [
@@ -50,7 +50,7 @@ export default class Auth extends Component {
   };
   render() {
     return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Loader size="large" color={Color.INACTIVE_COLOR} />
       </View>
     );

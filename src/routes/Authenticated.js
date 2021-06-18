@@ -1,7 +1,7 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import Routes from './routes';
-import {DrawerComponent, TopNav, TopNavEarning} from '../component';
+import { DrawerComponent, TopNav, TopNavEarning } from '../component';
 import Profile from '../screen/Profile';
 import DocumentScreen from '../screen/DocumentScreen';
 import OderDetails, { OrderDetails } from '../screen/OrderDetails';
@@ -20,7 +20,7 @@ const Stack = createStackNavigator();
 
 const Authenticated = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName={Routes.Home}>
       <Stack.Screen
         name={Routes.Home}
         component={DrawerComponent}
@@ -32,109 +32,109 @@ const Authenticated = () => {
         name={Routes.Profile}
         component={Profile}
         options={{
-          headerTitleAlign:'center',
+          headerTitleAlign: 'center',
           headerStyle: {
-            backgroundColor:Color.PRIMARY,
+            backgroundColor: Color.PRIMARY,
           },
-          headerTintColor:Color.WHITE_SMOKE
+          headerTintColor: Color.WHITE_SMOKE
         }}
-        
+
       />
       <Stack.Screen
-       name={Routes.DocumentScreen}
-       component={DocumentScreen}
-       options={{
-         headerTitleAlign:'center',
-         headerTitle:'Document',
-         headerStyle: {
-          backgroundColor:Color.PRIMARY,
-        },
-        headerTintColor:Color.WHITE_SMOKE
-       }}
-       />
-       <Stack.Screen
-       name={Routes.OderDetails}
-       component={TopNav}
-       options={{
-         headerTitleAlign:'center',
-         headerStyle: {
-          backgroundColor:Color.PRIMARY,
-        },
-        headerTintColor:Color.WHITE_SMOKE
-       }}/>
-       
-       <Stack.Screen 
-       name={Routes.CancelledOrderScreen}
-       component={CancelledOrderScreen}
-       options={{headerShown:false}}/>
-       <Stack.Screen
-       name={Routes.TotalOrderScreen}
-       component={TotalOrderScreen}
-       options={{headerShown:false}}/>
-       <Stack.Screen
+        name={Routes.DocumentScreen}
+        component={DocumentScreen}
+        options={{
+          headerTitleAlign: 'center',
+          headerTitle: 'Document',
+          headerStyle: {
+            backgroundColor: Color.PRIMARY,
+          },
+          headerTintColor: Color.WHITE_SMOKE
+        }}
+      />
+      <Stack.Screen
+        name={Routes.OderDetails}
+        component={TopNav}
+        options={{
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: Color.PRIMARY,
+          },
+          headerTintColor: Color.WHITE_SMOKE
+        }} />
+
+      <Stack.Screen
+        name={Routes.CancelledOrderScreen}
+        component={CancelledOrderScreen}
+        options={{ headerShown: false }} />
+      <Stack.Screen
+        name={Routes.TotalOrderScreen}
+        component={TotalOrderScreen}
+        options={{ headerShown: false }} />
+      <Stack.Screen
         name={Routes.RestaurantMapScreen}
         component={RestaurantMapScreen}
         options={{
-          title:"Live Track",
-          headerTitleAlign:'center',
+          title: "Live Track",
+          headerTitleAlign: 'center',
           headerStyle: {
-            backgroundColor:Color.PRIMARY,
+            backgroundColor: Color.PRIMARY,
           },
-          headerTintColor:Color.WHITE_SMOKE
+          headerTintColor: Color.WHITE_SMOKE
         }}
       />
-        <Stack.Screen 
+      <Stack.Screen
         name={Routes.CustomerMapScreen}
         component={CustomerMapScreen}
         options={{
-          title:"Live Track",
-          headerTitleAlign:'center',
+          title: "Live Track",
+          headerTitleAlign: 'center',
           headerStyle: {
-            backgroundColor:Color.PRIMARY,
+            backgroundColor: Color.PRIMARY,
           },
-          headerTintColor:Color.WHITE_SMOKE
+          headerTintColor: Color.WHITE_SMOKE
         }}
-       />
-        <Stack.Screen
+      />
+      <Stack.Screen
         name={Routes.EarningScreen}
         component={TopNavEarning}
         options={{
-          headerTitleAlign:'center',
-          headerTitle:'Earnings',
+          headerTitleAlign: 'center',
+          headerTitle: 'Earnings',
           headerStyle: {
-            backgroundColor:Color.PRIMARY,
+            backgroundColor: Color.PRIMARY,
           },
-          headerTintColor:Color.WHITE_SMOKE
+          headerTintColor: Color.WHITE_SMOKE
         }}
-       />
+      />
 
-       <Stack.Screen 
-       name={Routes.OrderCustomerDetails}
-       component={OrderCustomerDetails}
-       options={
-         {
-           headerTitle:"Customer Order Details",
-          headerStyle: {
-            backgroundColor:Color.PRIMARY,
-          },
-          headerTintColor:Color.WHITE_SMOKE,
-          headerTitleAlign:'center'
-         }
-       } />
+      <Stack.Screen
+        name={Routes.OrderCustomerDetails}
+        component={OrderCustomerDetails}
+        options={
+          {
+            headerTitle: "Customer Order Details",
+            headerStyle: {
+              backgroundColor: Color.PRIMARY,
+            },
+            headerTintColor: Color.WHITE_SMOKE,
+            headerTitleAlign: 'center'
+          }
+        } />
 
-       <Stack.Screen 
+      <Stack.Screen
         name={Routes.Notifications}
         component={Notifications}
         options={{
-          headerTitle:"Notifications",
-          headerStyle:{
-            backgroundColor:Color.PRIMARY,
+          headerTitle: "Notifications",
+          headerStyle: {
+            backgroundColor: Color.PRIMARY,
           },
-          headerTintColor:Color.WHITE_SMOKE,
-          headerTitleAlign:'center'
-        }}/>
-        <Stack.Screen  name={Routes.MapScreen}
-        component={MapScreen}/>
+          headerTintColor: Color.WHITE_SMOKE,
+          headerTitleAlign: 'center'
+        }} />
+      <Stack.Screen name={Routes.MapScreen}
+        component={MapScreen} />
     </Stack.Navigator>
   );
 };

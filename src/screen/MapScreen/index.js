@@ -54,141 +54,63 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 // import MapView from 'react-native-maps';
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
-import Geolocation from "react-native-geolocation-service";
+// import Geolocation from '@react-native-community/geolocation';
 import { Alert } from 'react-native';
+import MapViewDirections from 'react-native-maps-directions';
+import Geolocation from 'react-native-geolocation-service';
+
 
 
 export default class MapScreen extends Component {
-
-
   constructor(props) {
     super(props);
     this.state = {
+      // lat:
       latitude: 0,
-      longitude: 0,
-      coordinates: [],
-    };
+      longitude: 0
+    }
   }
 
-
   componentDidMount() {
-
-    //   Geolocation.getCurrentPosition(
-    //     position => {
-    //       this.setState({
-    //         latitude: position.coords.latitude,
-    //         longitude: position.coords.longitude,
-    //         coordinates: this.state.coordinates.concat({
-    //           latitude: position.coords.latitude,
-    //           longitude: position.coords.longitude
-    //         })
-    //       });
-    //     },
-    //     error => {
-    //       Alert.alert(error.message.toString());
-    //     },
-    //     {
-    //       showLocationDialog: true,
-    //       enableHighAccuracy: true,
-    //       timeout: 20000,
-    //       maximumAge: 0
-    //     }
-    //   );
-    // }
-
-    Geolocation.watchPosition(
-      position => {
+    // console.log("navigator.geolocation", navigator.Geolocation);
+    Geolocation.getCurrentPosition(
+      (position) => {
+        console.log(position);
         this.setState({
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
-          coordinates: this.state.coordinates.concat({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude
-          })
-        });
+        })
       },
-      error => {
-        console.log(error);
+      (error) => {
+        // See error code charts below.
+        console.log(error.code, error.message);
       },
-      {
-        showLocationDialog: true,
-        enableHighAccuracy: true,
-        timeout: 20000,
-        maximumAge: 0,
-        distanceFilter: 0
-      }
+      { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
     );
   }
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     latitude: LATITUDE,
-  //     longitude: LONGITUDE,
-  //     routeCoordinates: [],
-  //     distanceTravelled: 0,
-  //     prevLatLng: {},
-  //     coordinate: new AnimatedRegion({
-  //       latitude: LATITUDE,
-  //       longitude: LONGITUDE
-  //     })
-  //   };
-  // }
+
+  onRegionChange = () => {
+    this.setState({ region })
+  }
+
 
   render() {
     return (
       <View style={styles.MainContainer}>
-
-
-        {/* <View style={{ marginTop: 10, padding: 10, borderRadius: 10, width: '40%' }}>
-          <Button
-            title="Get Location"
-          />
-        </View>
-        <Text>Latitude: </Text>
-        <Text>Longitude: </Text>
-        <View style={{ marginTop: 10, padding: 10, borderRadius: 10, width: '40%' }}>
-          <Button
-            title="Send Location"
-          />
-        </View> */}
-
-        {/* <MapView
+        <MapView
           style={styles.mapStyle}
-          showsUserLocation={false}
+          showsUserLocation={true}
           zoomEnabled={true}
           zoomControlEnabled={true}
+          region={this.state.region}
+          onRegionChange={this.onRegionChange}
           initialRegion={{
-            latitude: 28.579660,
-            longitude: 77.321110,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }}>
-
-          <Marker
-            coordinate={{ latitude: 28.579660, longitude: 77.321110 }}
-            title={"JavaTpoint"}
-            description={"Java Training Institute"}
-          />
-        </MapView> */}
-
-        <MapView
-          provider={PROVIDER_GOOGLE}
-          // customMapStyle={mapStyle}
-          customMapStyle={styles.mapStyle}
-          style={{ flex: 1 }}
-          // style={styles.mapStyle}
-          region={{
             latitude: this.state.latitude,
             longitude: this.state.longitude,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }}>
-          <Marker
-            coordinate={{
-              latitude: this.state.latitude,
-              longitude: this.state.longitude,
-            }}>
-          </Marker>
+          <Marker coordinate={{ latitude: this.state.latitude, longitude: this.state.longitude }} />
         </MapView>
 
       </View>
@@ -213,5 +135,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
+    width: '100%',
+    height: '100%'
   },
 });

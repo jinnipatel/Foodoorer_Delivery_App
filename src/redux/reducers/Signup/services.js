@@ -13,10 +13,12 @@ export const SignUpService = async (action) => {
         // confirmPassword: action.payload.confirmPassword,
 
     }
-    console.log(jsonBody)
+    // console.log("@@@@@@@", jsonBody)
     // console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@', action.payload.name)
+    debugger
     let result = await callService(apiUrl.register, "POST", jsonBody, action.payload.props,
         action.payload.cbError, action.payload.cbSuccess);
-    console.log(result)
+    // let result = await callService(apiUrl.register, "POST", jsonBody)
+    console.log("''''''''''''''", result)
     return result;
 }

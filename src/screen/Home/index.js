@@ -256,12 +256,12 @@ export class Home extends Component {
     );
   }
 }
-// const mapStateToProps = state => ({
-//   isOnboardingDone: state.onborading.value
-// });
+const mapStateToProps = state => ({
+  isOnboardingDone: state
+});
 
 
 
-// export default connect(mapStateToProps, null)(Home);
+export default connect(mapStateToProps, null)(Home);
 
-export default Home;
+// export default Home;
