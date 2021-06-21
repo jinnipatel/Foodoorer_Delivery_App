@@ -4,6 +4,7 @@ import { SignUpService } from './services';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Routes from '../../../routes/routes';
 import Snackbar from 'react-native-snackbar';
+import { Alert } from 'react-native';
 
 
 export function* registerUser(action) {
@@ -14,7 +15,7 @@ export function* registerUser(action) {
         // console.log('############', result)
         if (result?.isSucess)
             yield put({ type: types.REGISTER_USER_SUCCESS, payload: result.Result.data.data })
-        console.log("SignUp token", result.Result.data.data.token)
+        // console.log("SignUp token", result.Result.data.data.token)
         // console.log("token------", result)
         AsyncStorage.setItem("token", result.Result.data.data.token)
         AsyncStorage.setItem("userData", result.Result.data)
@@ -36,7 +37,7 @@ export function* registerUser(action) {
             test: "SignUp Unsuccessfully ",
             duration: Snackbar.LENGTH_LONG
         })
-        AsyncStorage.removeItem("token")
+        // AsyncStorage.removeItem("token")
     }
 }
 
