@@ -87,22 +87,22 @@ class Login extends Component {
   }
 
   checked_filed = () => {
-    // let emailError, PasswordError, isValid;
-    // emailError = validation('email', this.state.enail)
-    // PasswordError = validation('password', this.state.password);
-    // if (emailError != null || PasswordError != null) {
-    //   this.setState({
-    //     emailError: emailError,
-    //     PasswordError: PasswordError,
-    //   });
-    //   isValid = false;
-    // } else {
-    //   this.setState({
-    //     emailError: '',
-    //     PasswordError: '',
-    //   });
-    //   isValid = true;
-    // }
+    let emailError, PasswordError, isValid;
+    emailError = validation('email', this.state.enail)
+    PasswordError = validation('password', this.state.password);
+    if (emailError != null || PasswordError != null) {
+      this.setState({
+        emailError: emailError,
+        PasswordError: PasswordError,
+      });
+      isValid = false;
+    } else {
+      this.setState({
+        emailError: '',
+        PasswordError: '',
+      });
+      isValid = true;
+    }
     if (true) {
       this.loginUserRequest();
       // this.props.navigation.navigate(Routes.Home)

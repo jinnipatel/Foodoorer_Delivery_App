@@ -16,21 +16,27 @@ export function* registerUser(action) {
             yield put({ type: types.REGISTER_USER_SUCCESS, payload: result.Result.data.data })
         console.log("SignUp token", result.Result.data.data.token)
         // console.log("token------", result)
-        // AsyncStorage.setItem("token", result.Result.data.data.token)
-        // AsyncStorage.setItem("userData", result.Result.data)
-        // setTimeout(() => {
-        //     props.navigation.navigate(Routes.Authenticated)
-        // }, 2000)
-        // Snackbar.show({
-        //     text: "SignUp Successfully",
-        //     duration: Snackbar.LENGTH_SHORT,
-        // });
+        AsyncStorage.setItem("token", result.Result.data.data.token)
+        AsyncStorage.setItem("userData", result.Result.data)
+        setTimeout(() => {
+            props.navigation.navigate(Routes.Authenticated)
+        }, 2000)
+        Snackbar.show({
+            text: "SignUp Successfully",
+            duration: Snackbar.LENGTH_SHORT,
+        });
 
 
     }
     catch (e) {
         // console.log("user failure")
+        yield call(Alert.alert, "Faliure", "SignUp Unsuccessfully ")
         yield put({ type: types.REGISTER_USER_FAILURE, payload: e.message });
+        Snackbar.show({
+            test: "SignUp Unsuccessfully ",
+            duration: Snackbar.LENGTH_LONG
+        })
+        AsyncStorage.removeItem("token")
     }
 }
 

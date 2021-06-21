@@ -81,14 +81,14 @@ class Signup extends Component {
       passwordError,
       confirmpasswordError,
       isValid;
-    // firstnamerror = validation('name', this.state.name);
-    // emailError = validation('email', this.state.email);
-    // phoneErrorValidation = validation('phoneNo', this.state.phoneNo);
-    // passwordError = validation('password', this.state.password);
-    // confirmpasswordError = PasswordValidate(
-    //   this.state.password,
-    //   this.state.confirmPassword,
-    // );
+    firstnamerror = validation('name', this.state.name);
+    emailError = validation('email', this.state.email);
+    phoneErrorValidation = validation('phoneNo', this.state.phoneNo);
+    passwordError = validation('password', this.state.password);
+    confirmpasswordError = PasswordValidate(
+      this.state.password,
+      this.state.confirmPassword,
+    );
     if (
       firstnamerror != null ||
       emailError != null ||
