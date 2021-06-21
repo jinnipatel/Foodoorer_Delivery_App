@@ -31,7 +31,13 @@ export function* loginUser(action) {
     }
     catch (e) {
         // console.log("user failure", action.payload)
+        yield call(Alert.alert, "Faliure", "Plz Enter Validate Email & Password")
         yield put({ type: types.LOGIN_USER_FAILURE, payload: e.message });
+        AsyncStorage.removeItem("token")
+        Snackbar.show({
+            test: "Plz Enter Validate Email & Password",
+            duration: Snackbar.LENGTH_LONG
+        })
 
     }
 }
