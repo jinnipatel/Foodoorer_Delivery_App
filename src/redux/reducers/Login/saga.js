@@ -4,6 +4,7 @@ import { loginService } from './services';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Routes from '../../../routes/routes';
 import Snackbar from 'react-native-snackbar';
+import { Alert } from 'react-native';
 
 
 
@@ -21,7 +22,7 @@ export function* loginUser(action) {
             AsyncStorage.setItem("token", result.Result.data.data.token)
             AsyncStorage.setItem("userdata", JSON.stringify(result.Result.data.data))
             setTimeout(() => {
-                props.navigation.navigate(Routes.Authenticated)
+                this.props.navigation.navigate(Routes.Authenticated)
             }, 2000)
             Snackbar.show({
                 text: "Login Successfully",
@@ -31,7 +32,7 @@ export function* loginUser(action) {
     }
     catch (e) {
         // console.log("user failure", action.payload)
-        yield call(Alert.alert, "Faliure", "Plz Enter Validate Email & Password")
+        yield call(Alert.alert, "Faliure", "Enter Validate Email & Password")
         yield put({ type: types.LOGIN_USER_FAILURE, payload: e.message });
         AsyncStorage.removeItem("token")
         Snackbar.show({

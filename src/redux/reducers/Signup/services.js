@@ -9,7 +9,7 @@ export const SignUpService = async (action) => {
         email: action.payload.email,
         contact_no: action.payload.phoneNo,
         password: action.payload.password,
-        password_confirmation: action.payload.password,
+        password_confirmation: action.payload.confirmPassword,
         // confirmPassword: action.payload.confirmPassword,
 
     }
@@ -19,6 +19,6 @@ export const SignUpService = async (action) => {
     let result = await callService(apiUrl.register, "POST", jsonBody, action.payload.props,
         action.payload.cbError, action.payload.cbSuccess);
     // let result = await callService(apiUrl.register, "POST", jsonBody)
-    console.log("''''''''''''''", result)
+    // console.log("''''''''''''''", result)
     return result;
 }

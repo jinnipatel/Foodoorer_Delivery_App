@@ -43,7 +43,7 @@ class Signup extends Component {
   SignUpUserRequest = async () => {
     console.log('User Clicked');
     // this.showMessage()
-    const { name, email, password, phoneNo } = this.state;
+    const { name, email, password, phoneNo, confirmPassword } = this.state;
     this.setState({ visibility: true }, () => {
       console.log('~~~~~~~~~~~~~~~~~~~')
       let param =
@@ -56,6 +56,8 @@ class Signup extends Component {
         email: this.state.email,
         phoneNo: this.state.phoneNo,
         password: this.state.password,
+        confirmPassword: this.state.confirmPassword
+
 
 
 
@@ -152,7 +154,7 @@ class Signup extends Component {
   // };
 
   render() {
-    let { user } = this.props.signup;
+    // let { user } = this.props.signup;
     console.log(this.props.signup, "jjjjjronaldjjjjjjjj")
     return (
       <SafeAreaView style={CommonStyles.container}>

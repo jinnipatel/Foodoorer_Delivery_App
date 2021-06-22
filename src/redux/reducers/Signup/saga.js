@@ -9,29 +9,21 @@ import { Alert } from 'react-native';
 
 export function* registerUser(action) {
     try {
-        console.log(action)
         let { props } = action.payload
         const result = yield call(SignUpService, action);
-        // console.log('############', result)
         if (result?.isSucess)
             yield put({ type: types.REGISTER_USER_SUCCESS, payload: result.Result.data.data })
-        // console.log("SignUp token", result.Result.data.data.token)
-        // console.log("token------", result)
+        console.log("SignUp token", result.Result.data.data.token)
+        console.log("token------", result)
         AsyncStorage.setItem("token", result.Result.data.data.token)
-        AsyncStorage.setItem("userData", result.Result.data)
+        AsyncStorage.setItem("userdata", JSON.stringify(result.Result.data.data))
         setTimeout(() => {
-            props.navigation.navigate(Routes.Authenticated)
+            this.props.navigation.navigate(Routes.Login)
         }, 2000)
-        Snackbar.show({
-            text: "SignUp Successfully",
-            duration: Snackbar.LENGTH_SHORT,
-        });
-
-
     }
     catch (e) {
         // console.log("user failure")
-        yield call(Alert.alert, "Faliure", "SignUp Unsuccessfully ")
+        // yield call(Alert.alert, "Faliure", "SignUp Unsuccessfully ")
         yield put({ type: types.REGISTER_USER_FAILURE, payload: e.message });
         Snackbar.show({
             test: "SignUp Unsuccessfully ",
