@@ -13,6 +13,8 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import { Color } from '../../../utils/Color';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ThemeUtils } from '../../../utils';
+import persistStore from 'redux-persist/es/persistStore';
+import storage from 'redux-persist/lib/storage';
 
 
 
@@ -25,13 +27,23 @@ export function DrawerContent(props) {
   });
   const removeAuthentication = async () => {
     try {
-      console.log('logout');
+      console.log('logout',);
       await AsyncStorage.clear();
+      // storage.removeItem('persist:root')
       props.navigation.dispatch(resetStack);
     } catch (e) {
       console.log(e);
     }
   };
+
+  // logout = async () => {
+  //   try {
+  //     const key = AsyncStorage.getItem("sigup")
+  //   } catch (error) {
+
+  //   }
+
+  // }
 
 
   return (

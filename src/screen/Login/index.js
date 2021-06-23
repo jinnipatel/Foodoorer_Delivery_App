@@ -88,21 +88,21 @@ class Login extends Component {
 
   checked_filed = () => {
     let emailError, PasswordError, isValid;
-    emailError = validation('email', this.state.enail)
-    PasswordError = validation('password', this.state.password);
-    if (emailError != null || PasswordError != null) {
-      this.setState({
-        emailError: emailError,
-        PasswordError: PasswordError,
-      });
-      isValid = false;
-    } else {
-      this.setState({
-        emailError: '',
-        PasswordError: '',
-      });
-      isValid = true;
-    }
+    // emailError = validation('email', this.state.enail)
+    // PasswordError = validation('password', this.state.password);
+    // if (emailError != null || PasswordError != null) {
+    //   this.setState({
+    //     emailError: emailError,
+    //     PasswordError: PasswordError,
+    //   });
+    //   isValid = false;
+    // } else {
+    //   this.setState({
+    //     emailError: '',
+    //     PasswordError: '',
+    //   });
+    //   isValid = true;
+    // }
     if (true) {
       this.loginUserRequest();
       // this.props.navigation.navigate(Routes.Home)
@@ -129,7 +129,7 @@ class Login extends Component {
 
   render() {
     let { user } = this.props.login;
-    console.log(this.props.login, "kkkkkkkkkkkkkkkkkkkkkk")
+    console.log(this.props, "kkkkkkkkkkkkkkkkkkkkkk")
     return (
 
       <SafeAreaView style={CommonStyles.container}>

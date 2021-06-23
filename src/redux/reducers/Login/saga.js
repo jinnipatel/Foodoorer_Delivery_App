@@ -22,7 +22,7 @@ export function* loginUser(action) {
             AsyncStorage.setItem("token", result.Result.data.data.token)
             AsyncStorage.setItem("userdata", JSON.stringify(result.Result.data.data))
             setTimeout(() => {
-                this.props.navigation.navigate(Routes.Authenticated)
+                props.navigation.navigate(Routes.Authenticated)
             }, 2000)
             Snackbar.show({
                 text: "Login Successfully",
@@ -34,7 +34,7 @@ export function* loginUser(action) {
         // console.log("user failure", action.payload)
         yield call(Alert.alert, "Faliure", "Enter Validate Email & Password")
         yield put({ type: types.LOGIN_USER_FAILURE, payload: e.message });
-        AsyncStorage.removeItem("token")
+        // AsyncStorage.removeItem("token")
         Snackbar.show({
             test: "Plz Enter Validate Email & Password",
             duration: Snackbar.LENGTH_LONG

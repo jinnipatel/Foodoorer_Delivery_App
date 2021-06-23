@@ -31,11 +31,21 @@ class SplashScreen extends React.Component {
   }
 
   checkAuthentication = async () => {
-    let isAuthenticated = await AsyncStorage.getItem('signup_data');
-    if (isAuthenticated != null) this.goTo(true);
-    else this.goTo(false);
+    let isAuthenticated = await AsyncStorage.getItem('token');
+    if (
+      isAuthenticated != null &&
+      isAuthenticated != undefined &&
+      isAuthenticated != ''
+    ) {
+      this.goTo(true);
+      global.userToken = isAuthenticated;
+    }
+    else
+      this.goTo(false);
   };
-  goTo = value => {
+
+
+  goTo = async value => {
     if (value) {
       setTimeout(() => {
         this.props.navigation.dispatch(this.resetToAuth);

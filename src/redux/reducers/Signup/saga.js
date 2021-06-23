@@ -9,7 +9,9 @@ import { Alert } from 'react-native';
 
 export function* registerUser(action) {
     try {
-        let { props } = action.payload
+
+        let { props } = action
+        // console.log('\n\n', props, "propsss\n\n")
         const result = yield call(SignUpService, action);
         if (result?.isSucess)
             yield put({ type: types.REGISTER_USER_SUCCESS, payload: result.Result.data.data })
@@ -18,7 +20,7 @@ export function* registerUser(action) {
         AsyncStorage.setItem("token", result.Result.data.data.token)
         AsyncStorage.setItem("userdata", JSON.stringify(result.Result.data.data))
         setTimeout(() => {
-            this.props.navigation.navigate(Routes.Login)
+            props.navigation.navigate(Routes.Authenticated)
         }, 2000)
     }
     catch (e) {
