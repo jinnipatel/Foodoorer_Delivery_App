@@ -8,8 +8,11 @@ import { Color } from '../../utils/Color';
 import styles from './style';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { onborading_screen } from '../../redux/reducers/Onborading/action'
+import { onBoardingDoneAction } from '../../redux/reducers/common/action';
+// import { onborading_screen } from '../../redux/reducers/Onborading/action'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { resetNavigation } from '../../utils/commonFunctions';
+import { Alert } from 'react-native';
 
 
 
@@ -36,12 +39,22 @@ const slides = [
 ];
 
 
+
 class Onborading extends Component {
 
+  state = {
+    onBoradingDone: false
+  }
 
   onDone = () => {
-    this.props.onDone();
-  };
+    this.setState({ onBoradingDone: true });
+    this.props.onBoardingDoneAction(true)
+    resetNavigation(this.props.navigation, Routes.NotAuthenticated)
+  }
+
+  // onDone = () => {
+  //   this.props.onDone();
+  // };
   // componentDidMount() {
   //   this.check();
   // }
@@ -56,7 +69,7 @@ class Onborading extends Component {
   // }
 
   render() {
-    console.log("setonborading render", this.props.onBoradingDone)
+    // console.log("setonborading render", this.props.onBoradingDone)
 
 
     const RenderNextButton = () => {
@@ -69,10 +82,12 @@ class Onborading extends Component {
 
     const RenderDoneButton = () => {
       return (
-        <TouchableOpacity onPress={() => {
-          this.props.onborading_screen(true);
-          this.props.navigation.navigate(Routes.Login);
-        }}>
+        // <TouchableOpacity onPress={() => {
+        //   this.props.onborading_screen(true);
+        //   this.props.navigation.navigate(Routes.Login);
+        // }}>
+        <TouchableOpacity onPress={this.onDone}>
+          {/* <TouchableOpacity onPress={() => Alert("Hello")}> */}
 
           <View style={styles.buttonCircle}>
             <Icon
@@ -104,36 +119,53 @@ class Onborading extends Component {
       );
     };
     return (
-      <>
-        {this.props.OnboardingDone === true ? (
-          this.props.navigation.navigate(Routes.Signup)
-        ) : (<View style={{ flex: 1 }}>
-          <StatusBar hidden={true} />
-          <AppIntroSlider
-            data={slides}
-            renderItem={RenderItem}
-            onDone={this.onDone}
-            renderDoneButton={RenderDoneButton}
-            renderNextButton={RenderNextButton}
-            dotStyle={styles.dotStyle}
-            activeDotStyle={styles.activeDotStyle}
-          />
-        </View >
-        )}
-      </>
+      <AppIntroSlider
+        data={slides}
+        renderItem={RenderItem}
+        // onDone={this.onDone}
+        renderDoneButton={RenderDoneButton}
+        renderNextButton={RenderNextButton}
+        dotStyle={styles.dotStyle}
+        activeDotStyle={styles.activeDotStyle}
+      />
+      // <>
+      //   {this.props.OnboardingDone === true ? (
+      //     this.props.navigation.navigate(Routes.Signup)
+      //   ) : (<View style={{ flex: 1 }}>
+      //     <StatusBar hidden={true} />
+      //     <AppIntroSlider
+      //       data={slides}
+      //       renderItem={RenderItem}
+      //       onDone={this.onDone}
+      //       renderDoneButton={RenderDoneButton}
+      //       renderNextButton={RenderNextButton}
+      //       dotStyle={styles.dotStyle}
+      //       activeDotStyle={styles.activeDotStyle}
+      //     />
+      //   </View >
+      //   )}
+      // </>
     );
   }
 };
-const mapStateToProps = state =>
-({
-  OnboardingDone: state.onborading.value
-});
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      onborading_screen,
-    },
-    dispatch
-  );
-export default connect(mapStateToProps, mapDispatchToProps)(Onborading);
+
+// const mapStateToProps = state =>
+// ({
+//   OnboardingDone: state.onborading.value
+// });
+// const mapDispatchToProps = dispatch =>
+//   bindActionCreators(
+//     {
+//       onborading_screen,
+//     },
+//     dispatch
+//   );
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    onBoardingDoneAction
+  },
+    dispatch)
+}
+export default connect('', mapDispatchToProps)(Onborading);
 // export default Onborading

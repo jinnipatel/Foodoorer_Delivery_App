@@ -11,10 +11,9 @@ import RestaurantMapScreen from '../screen/RestaurantMapScreen';
 import CustomerMapScreen from '../screen/CustomerMapScreen';
 import DeliverScreen, { EarningScreen } from '../screen/EarningScreen';
 import { Color } from '../utils';
-import OrderCustomerDetails from '../screen/OrderCustomerDetails'
+import OrderCustomerDetails from '../screen/OrderCustomerDetails';
 import Notifications from '../screen/Notifications';
 import MapScreen from '../screen/MapScreen';
-
 
 const Stack = createStackNavigator();
 
@@ -36,9 +35,8 @@ const Authenticated = () => {
           headerStyle: {
             backgroundColor: Color.PRIMARY,
           },
-          headerTintColor: Color.WHITE_SMOKE
+          headerTintColor: Color.WHITE_SMOKE,
         }}
-
       />
       <Stack.Screen
         name={Routes.DocumentScreen}
@@ -49,7 +47,7 @@ const Authenticated = () => {
           headerStyle: {
             backgroundColor: Color.PRIMARY,
           },
-          headerTintColor: Color.WHITE_SMOKE
+          headerTintColor: Color.WHITE_SMOKE,
         }}
       />
       <Stack.Screen
@@ -60,39 +58,42 @@ const Authenticated = () => {
           headerStyle: {
             backgroundColor: Color.PRIMARY,
           },
-          headerTintColor: Color.WHITE_SMOKE
-        }} />
+          headerTintColor: Color.WHITE_SMOKE,
+        }}
+      />
 
       <Stack.Screen
         name={Routes.CancelledOrderScreen}
         component={CancelledOrderScreen}
-        options={{ headerShown: false }} />
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         name={Routes.TotalOrderScreen}
         component={TotalOrderScreen}
-        options={{ headerShown: false }} />
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         name={Routes.RestaurantMapScreen}
         component={RestaurantMapScreen}
         options={{
-          title: "Live Track",
+          title: 'Live Track',
           headerTitleAlign: 'center',
           headerStyle: {
             backgroundColor: Color.PRIMARY,
           },
-          headerTintColor: Color.WHITE_SMOKE
+          headerTintColor: Color.WHITE_SMOKE,
         }}
       />
       <Stack.Screen
         name={Routes.CustomerMapScreen}
         component={CustomerMapScreen}
         options={{
-          title: "Live Track",
+          title: 'Live Track',
           headerTitleAlign: 'center',
           headerStyle: {
             backgroundColor: Color.PRIMARY,
           },
-          headerTintColor: Color.WHITE_SMOKE
+          headerTintColor: Color.WHITE_SMOKE,
         }}
       />
       <Stack.Screen
@@ -104,37 +105,34 @@ const Authenticated = () => {
           headerStyle: {
             backgroundColor: Color.PRIMARY,
           },
-          headerTintColor: Color.WHITE_SMOKE
+          headerTintColor: Color.WHITE_SMOKE,
         }}
       />
 
       <Stack.Screen
         name={Routes.OrderCustomerDetails}
         component={OrderCustomerDetails}
-        options={
-          {
-            headerTitle: "Customer Order Details",
-            headerStyle: {
-              backgroundColor: Color.PRIMARY,
-            },
-            headerTintColor: Color.WHITE_SMOKE,
-            headerTitleAlign: 'center'
-          }
-        } />
-
-      <Stack.Screen
-        name={Routes.Notifications}
-        component={Notifications}
         options={{
-          headerTitle: "Notifications",
+          headerTitle: 'Customer Order Details',
           headerStyle: {
             backgroundColor: Color.PRIMARY,
           },
           headerTintColor: Color.WHITE_SMOKE,
-          headerTitleAlign: 'center'
-        }} />
-      <Stack.Screen name={Routes.MapScreen}
-        component={MapScreen} />
+          headerTitleAlign: 'center',
+        }}
+      />
+      <Stack.Screen
+        name={Routes.Notifications}
+        component={Notifications}
+        options={{
+          headerTitle: 'Notifications',
+          headerStyle: {
+            backgroundColor: Color.PRIMARY,
+          },
+          headerTintColor: Color.WHITE_SMOKE,
+          headerTitleAlign: 'center',
+        }}
+      />
     </Stack.Navigator>
   );
 };

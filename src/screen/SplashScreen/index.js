@@ -1,4 +1,3 @@
-import { CommonActions } from '@react-navigation/routers';
 import React from 'react';
 import { View, Image } from 'react-native';
 import styles from './style';
@@ -6,55 +5,37 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Routes from '../../routes/routes';
 import { Label, Status } from '../../component';
 import { Color } from '../../utils/Color';
+import { connect } from 'react-redux';
+import { resetNavigation } from '../../utils/commonFunctions';
+
+const mapStateToProps = state => {
+  return {
+    login: state.login.user,
+    common: state.common,
+  };
+};
 
 class SplashScreen extends React.Component {
-  resetToAuth = CommonActions.reset({
-    index: 0,
-    routes: [
-      {
-        name: Routes.Authenticated,
-      },
-    ],
-  });
-
-  resetToNotAuth = CommonActions.reset({
-    index: 0,
-    routes: [
-      {
-        name: Routes.NotAuthenticated,
-      },
-    ],
-  });
-
   componentDidMount() {
     this.checkAuthentication();
   }
 
   checkAuthentication = async () => {
-    let isAuthenticated = await AsyncStorage.getItem('token');
-    if (
-      isAuthenticated != null &&
-      isAuthenticated != undefined &&
-      isAuthenticated != ''
-    ) {
+    let _token = await AsyncStorage.getItem('token');
+    if (_token != null && _token != undefined && _token != '') {
       this.goTo(true);
-      global.userToken = isAuthenticated;
-    }
-    else
-      this.goTo(false);
+    } else this.goTo(false);
   };
 
-
-  goTo = async value => {
-    if (value) {
-      setTimeout(() => {
-        this.props.navigation.dispatch(this.resetToAuth);
-      }, 2000);
-    } else {
-      setTimeout(() => {
-        this.props.navigation.dispatch(this.resetToNotAuth);
-      }, 2000);
-    }
+  goTo = value => {
+    setTimeout(() => {
+      let _props = this.props.navigation;
+      if (!value) {
+        let { boarding } = this.props.common;
+        if (boarding) resetNavigation(_props, Routes.NotAuthenticated);
+        else resetNavigation(_props, Routes.boarding);
+      } else resetNavigation(_props, Routes.Authenticated);
+    }, 2000);
   };
 
   render() {
@@ -79,4 +60,4 @@ class SplashScreen extends React.Component {
   }
 }
 
-export default SplashScreen;
+export default connect(mapStateToProps, '')(SplashScreen);

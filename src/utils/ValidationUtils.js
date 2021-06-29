@@ -20,7 +20,7 @@ let constraints = {
             message: Message.Errors.emailBlank
         },
         format: {
-            pattern:  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+            pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
             message: Message.Errors.emailValidity,
         }
     },
@@ -38,7 +38,7 @@ let constraints = {
             message: Message.Errors.pwdBlank
         }
     },
-    phoneNo: {                                                     
+    phoneNo: {
         presence: {
             message: Message.Errors.phoneBlank
         },
@@ -51,7 +51,7 @@ let constraints = {
         // },
         length: {
             maximum: 10,
-            minimum:10,
+            minimum: 10,
             tooLong: Message.Errors.phoneTooLong,
             tooShort: Message.Errors.phoneTooShort
         },
@@ -105,7 +105,7 @@ export function validation(fieldName, value) {
     let formFields = {};
     formFields[fieldName] = constraints[fieldName];
 
-    let result = validate(formValues, formFields, {fullMessages: false});
+    let result = validate(formValues, formFields, { fullMessages: false });
 
     if (result) {
         return result[fieldName][0]
@@ -130,7 +130,7 @@ export function PasswordValidate(password, confirmPassword) {
     let result1 = validate({
         password: password,
         confirmPassword: confirmPassword
-    }, PasswordConstraints, {fullMessages: false});
+    }, PasswordConstraints, { fullMessages: false });
 
     if (result1 !== null && result1 !== undefined) {
         if (result1['confirmPassword'] !== undefined)

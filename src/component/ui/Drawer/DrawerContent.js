@@ -5,65 +5,54 @@ import { View, Image } from 'react-native';
 import { Avatar, Caption, Drawer, Title } from 'react-native-paper';
 import Routes from '../../../routes/routes';
 import styles from './style';
-// import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Feather from 'react-native-vector-icons/Feather';
 import Icons from 'react-native-vector-icons/FontAwesome5';
-import User from 'react-native-vector-icons/FontAwesome'
-import Icon from 'react-native-vector-icons/Ionicons'
+import User from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { Color } from '../../../utils/Color';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ThemeUtils } from '../../../utils';
-import persistStore from 'redux-persist/es/persistStore';
-import storage from 'redux-persist/lib/storage';
-
-
-
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { logOutAction } from '../../../redux/reducers/common/action';
 
 export function DrawerContent(props) {
-
   const resetStack = CommonActions.reset({
     index: 0,
     routes: [{ name: Routes.SplashScreen }],
   });
   const removeAuthentication = async () => {
     try {
-      console.log('logout',);
-      await AsyncStorage.clear();
-      // storage.removeItem('persist:root')
+      console.log('logout');
+      await AsyncStorage.removeItem('token');
       props.navigation.dispatch(resetStack);
     } catch (e) {
       console.log(e);
     }
   };
-
-  // logout = async () => {
-  //   try {
-  //     const key = AsyncStorage.getItem("sigup")
-  //   } catch (error) {
-
-  //   }
-
-  // }
-
-
   return (
     <View style={{ flex: 1, backgroundColor: Color.PRIMARY }}>
       <View
-        style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+        style={{
+          flex: 1,
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
         <Avatar.Image
           source={require('../../../assets/Img/profile_logo.png')}
           resizeMode="contain"
           size={80}
           style={{ marginTop: 75 }}
+          backgroundColor={Color.WHITE_SMOKE}
         />
-        {/* <View style={{marginLeft: 10}}> */}
-        <Title style={{ fontSize: 20, color: Color.WHITE }}>JOHN DOE</Title>
-        <Caption style={{ fontSize: 16, color: Color.WHITE }}>
-          driverone@gmail.com
-        </Caption>
-        {/* </View> */}
-      </View>
 
+        <Title style={{ fontSize: 20, color: Color.WHITE }}>
+          {props.profile.name}
+        </Title>
+        <Caption style={{ fontSize: 16, color: Color.WHITE }}>
+          {props.profile.email}
+        </Caption>
+      </View>
       <View
         style={{
           flex: 5,
@@ -71,21 +60,18 @@ export function DrawerContent(props) {
           padding: 15,
           borderTopStartRadius: 20,
           borderTopEndRadius: 12,
-          marginTop: 70
+          marginTop: 70,
         }}>
         <Drawer.Section style={styles.drawerSection}>
           <DrawerItem
             icon={() => (
-
               <Icon name="home-outline" color={Color.PRIMARY_DARK} size={25} />
-              // <Image source={require("../../../assets/profile_screen_icon/address.png")} resizeMode="contain" style={{tintColor:Color.PRIMARY_DARK}} />
             )}
             label="Home"
             labelStyle={{ fontSize: 20, color: Color.PRIMARY_DARK }}
           />
           <DrawerItem
             icon={() => (
-              // <Icon name="face-profile" color={Color.PRIMARY_DARK} size={30} />
               <User name="user-o" color={Color.PRIMARY_DARK} size={25} />
             )}
             label="My Profile"
@@ -94,22 +80,23 @@ export function DrawerContent(props) {
           />
           <DrawerItem
             icon={() => (
-              <Icon name="fast-food-outline" color={Color.PRIMARY_DARK} size={25} />
-              //  <Image source={require("../../../assets/profile_screen_icon/order.png")} resizeMode="contain" style={{tintColor:Color.PRIMARY_DARK}}  />
-              //  <Icon name="file-document-edit-outline" color={Color.PRIMARY_DARK} size={30}/>
+              <Icon
+                name="fast-food-outline"
+                color={Color.PRIMARY_DARK}
+                size={25}
+              />
             )}
             label="OrderDetails"
             labelStyle={{ fontSize: 20, color: Color.PRIMARY_DARK }}
-            onPress={() => props.navigation.navigate(Routes.OderDetails)} />
-
+            onPress={() => props.navigation.navigate(Routes.OderDetails)}
+          />
           <DrawerItem
             icon={() => (
-              // <Icon
-              //   name="file-document-edit-outline"
-              //   color={Color.PRIMARY_DARK}
-              //   size={30}
-              // />
-              <Icon name="documents-outline" size={25} color={Color.PRIMARY_DARK} />
+              <Icon
+                name="documents-outline"
+                size={25}
+                color={Color.PRIMARY_DARK}
+              />
             )}
             label="Documents"
             labelStyle={{ fontSize: 20, color: Color.PRIMARY_DARK }}
@@ -117,8 +104,6 @@ export function DrawerContent(props) {
           />
           <DrawerItem
             icon={() => (
-              // <Image source={require("../../../assets/Img/salary.png")} resizeMode="contain" style={{width:ThemeUtils.relativeWidth(10),height:ThemeUtils.relativeHeight(5)}} />
-
               <Icons name="coins" color={Color.PRIMARY_DARK} size={25} />
             )}
             label="Earning"
@@ -127,17 +112,18 @@ export function DrawerContent(props) {
           />
           <DrawerItem
             icon={() => (
-              // <Icons name="notifications" color={Color.PRIMARY_DARK} size={30} />
-              <Icon name="notifications-outline" size={25} color={Color.PRIMARY_DARK} />
+              <Icon
+                name="notifications-outline"
+                size={25}
+                color={Color.PRIMARY_DARK}
+              />
             )}
             label="Notifications"
             labelStyle={{ fontSize: 20, color: Color.PRIMARY_DARK }}
-            // onPress={()=>props.navigation.navigate(Routes.Notifications)}
             onPress={() => props.navigation.navigate(Routes.MapScreen)}
           />
           <DrawerItem
             icon={() => (
-              // <Image source={require("../../../assets/profile_screen_icon/logout.png")} resizeMode="contain" style={{tintColor:Color.PRIMARY_DARK}} />
               <Feather name="log-out" color={Color.PRIMARY_DARK} size={25} />
             )}
             label="Log-Out"
@@ -150,9 +136,19 @@ export function DrawerContent(props) {
   );
 }
 
-export default DrawerContent;
+const mapStateToProps = state => {
+  return {
+    profile: state.login.user,
+    login: state.login,
+  };
+};
 
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      logOutAction,
+    },
+    dispatch,
+  );
 
-
-
-
+export default connect(mapStateToProps, mapDispatchToProps)(DrawerContent);

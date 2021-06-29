@@ -18,11 +18,8 @@ import CommonStyles from '../../utils/CommonStyles';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { loginUserAction } from '../../redux/reducers/Login/action'
-// import { Snackbar } from 'react-native-paper'
+import { loginUserAction } from '../../redux/reducers/Login/action';
 import { validation } from '../../utils';
-
-
 
 class Login extends Component {
   constructor(props) {
@@ -36,88 +33,45 @@ class Login extends Component {
       isSecurePaswword: true,
     };
   }
-
-  // fetchAll = (param) => {
-  //   // this.props.getUser(param)
-  //   this.props.getUser(param)
-  // }
-
-  // loginUserRequest = async () => {
-  //   console.log("login User Clicked")
-
-  //   const { email, password } = this.state;
-  //   this.setState({ visibility: true }, () => {
-  //     let param = {
-  //       email: email,
-  //       password: password,
-  //       // app_type: 'parent'
-  //     }
-  //     this.fetchAll(param)
-  //     console.log("data||||||||")
-  //     this.props.navigation.navigate(Routes.Home)
-  //   })
-  // }
-
-  // showMessage = () => {
-  //   Snackbar.show({
-  //     text: 'Login Successfully',
-  //     duration: Snackbar.LENGTH_SHORT,
-  //   });
-  // };
-
   loginUserRequest = async () => {
     console.log('login User clicked');
-    const { email, password } = this.state;
     this.setState({ visibility: true }, () => {
-      let param =
-      {
+      let param = {
         email: this.state.email,
         password: this.state.password,
       };
-      this.props.loginUserAction(param, this.props,
-        // cbError = err => {
-        //   console.log(err)
-        // },
-        // cbSuccess = err => {
-        //   console.log("Hello World")
-
-        // }
+      this.props.loginUserAction(
+        param,
+        this.props,
       );
     });
-  }
-
+  };
   checked_filed = () => {
-    let emailError, PasswordError, isValid;
-    // emailError = validation('email', this.state.enail)
-    // PasswordError = validation('password', this.state.password);
-    // if (emailError != null || PasswordError != null) {
-    //   this.setState({
-    //     emailError: emailError,
-    //     PasswordError: PasswordError,
-    //   });
-    //   isValid = false;
-    // } else {
-    //   this.setState({
-    //     emailError: '',
-    //     PasswordError: '',
-    //   });
-    //   isValid = true;
-    // }
-    if (true) {
+    let emailError,
+      PasswordError,
+      isValid = true;
+    emailError = validation('email', this.state.email);
+    PasswordError = validation('password', this.state.password);
+    if (emailError != null || PasswordError != null) {
+      this.setState({
+        emailError: emailError,
+        PasswordError: PasswordError,
+      });
+      isValid = false;
+    } else {
+      this.setState({
+        emailError: '',
+        PasswordError: '',
+      });
+      isValid = true;
+    }
+    if (isValid) {
       this.loginUserRequest();
-      // this.props.navigation.navigate(Routes.Home)
-
-      // this.props.navigation.navigate(Routes.Auth, {
-      //   email: this.state.email,
-      //   password: this.state.password,
-      // });
     }
   };
 
-
   making_api_call = () => {
     if (this.checked_filed()) {
-      // this.props.navigation.navigate(Routes.Home)
     }
   };
 
@@ -128,10 +82,9 @@ class Login extends Component {
   };
 
   render() {
-    let { user } = this.props.login;
-    console.log(this.props, "kkkkkkkkkkkkkkkkkkkkkk")
-    return (
+    let { login } = this.props.login;
 
+    return (
       <SafeAreaView style={CommonStyles.container}>
         <Status hidden={true} />
         <LinearGradient
@@ -243,24 +196,18 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  console.log("login-------------------", state)
+const mapStateToProps = state => {
   return {
     login: state.login,
   };
-}
-
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
+};
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
     {
       loginUserAction,
     },
-    dispatch
+    dispatch,
   );
+};
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
-
-
-
-
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

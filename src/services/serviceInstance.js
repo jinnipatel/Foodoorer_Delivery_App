@@ -1,19 +1,11 @@
 import axios from 'axios';
-import store from '../redux/store';
+
 
 let axiosInstance = axios.create({
-    baseURL: "http://foodooerdashboard.project-demo.info/api/delivery",
-    timeout: 15000
+    baseURL: 'http://foodooerdashboard.project-demo.info/api/delivery',
+    timeout: 15000,
 });
-
 axiosInstance.defaults.headers.post['content-type'] = 'application/json';
-store.subscribe(listener);
+axiosInstance.defaults.headers.common['Authorization'] = `${global.userToken}`;
 
-function listener() {
-    if (store.getState() !== undefined) {
-        axiosInstance.defaults.headers.common['Authorization'] = `${store.getState().token}`;
-    }
-}
-export {
-    axiosInstance
-};
+export { axiosInstance };

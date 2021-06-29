@@ -4,6 +4,7 @@ const Routes = {
   Authenticated: 'Authenticated',
   NotAuthenticated: 'NotAuthenticated',
   SplashScreen: 'SplashScreen',
+  boarding: 'boarding',
   Home: 'Home',
   Login: 'Login',
   Signup: 'Signup',
@@ -24,7 +25,7 @@ const Routes = {
   MonthlyEarning: 'MonthlyEarning',
   OrderCustomerDetails: 'OrderCustomerDetails',
   Notifications: 'Notifications',
-  MapScreen: 'MapScreen'
+
 };
 
 export default Routes;

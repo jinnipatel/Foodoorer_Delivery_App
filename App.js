@@ -26,8 +26,8 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import store from './src/redux/store';
 import RootNavigator from './src/routes';
+// import {NetworkProvider,NetworkConsumer} from 'react-native-o'
 import { persistor } from './src/redux/store';
-import MapScreen from './src/screen/MapScreen';
 
 
 
@@ -41,14 +41,15 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <View style={{ flex: 1 }}>
-          <RootNavigator />
-        </View>
-      </PersistGate>
+
+      {/* <PersistGate loading={null} persistor={persistor}> */}
+      <View style={{ flex: 1 }}>
+        <RootNavigator />
+      </View>
+      {/* </PersistGate> */}
     </Provider>
 
-    // <MapScreen />
+
   );
 };
 

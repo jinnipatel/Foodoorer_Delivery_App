@@ -1,13 +1,12 @@
 import { combineReducers } from 'redux'
-import loginReducer from './Login/reducers'
-import signupReducer from './Signup/reducers'
-import onboradingReducer from './Onborading/reducers'
-import registerReducer from './Signup/reducers'
+import registerReducer from './Signup/reducer';
+import commonReducer from './common/reducer';
+import loginReducer from './Login/reducer';
+
 
 const rootReducer = combineReducers({
+    common: commonReducer,
     login: loginReducer,
-    signup: registerReducer,
-    onborading: onboradingReducer
+    signup: registerReducer
 })
-
 export default rootReducer

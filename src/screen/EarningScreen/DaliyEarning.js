@@ -6,7 +6,6 @@ import { Header, Label, Status } from '../../component';
 import { Color, ThemeUtils } from '../../utils';
 import Style from './Style';
 
-
 export class DaliyEarning extends Component {
   render() {
     return (
@@ -52,9 +51,8 @@ export class DaliyEarning extends Component {
               },
             ]}
             renderItem={({ item }) => (
-              <View >
-                <View
-                  style={Style.MainContainer}>
+              <View>
+                <View style={Style.MainContainer}>
                   <Image
                     resizeMode="contain"
                     source={item.img}
@@ -62,7 +60,6 @@ export class DaliyEarning extends Component {
                       width: ThemeUtils.relativeHeight(10),
                       height: ThemeUtils.relativeHeight(10),
                     }}
-
                   />
                   <View>
                     <Label>{item.date}</Label>
@@ -75,8 +72,8 @@ export class DaliyEarning extends Component {
           />
         </View>
       </SafeAreaView>
-    )
+    );
   }
 }
 
-export default DaliyEarning
+export default DaliyEarning;

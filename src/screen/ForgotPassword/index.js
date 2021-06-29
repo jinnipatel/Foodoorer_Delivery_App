@@ -10,7 +10,6 @@ import { validation } from '../../utils/ValidationUtils';
 import CommonStyles from '../../utils/CommonStyles';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-
 export class ForgotPassword extends Component {
   constructor() {
     super();

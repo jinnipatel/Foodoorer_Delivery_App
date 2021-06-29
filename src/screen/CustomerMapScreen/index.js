@@ -32,15 +32,15 @@ export class CustomerMapScreen extends Component {
       show: true,
       modelshow: false,
       doneModelShow: false,
-      isFinishBtn: true
+      isFinishBtn: true,
     };
   }
 
   enableButton = () => {
     setTimeout(() => {
-      this.setState({ isFinishBtn: false })
+      this.setState({ isFinishBtn: false });
     }, 2000);
-  }
+  };
 
   render() {
     return (
@@ -71,7 +71,7 @@ export class CustomerMapScreen extends Component {
                 <Image
                   source={require('../../assets/Img/profile_logo.png')}
                   style={Styles.modelImag}
-                  resizeMode='contain'
+                  resizeMode="contain"
                 />
                 <View style={{ marginStart: 20 }}>
                   <Label large color={Color.PRIMARY_DARK}>
@@ -112,7 +112,7 @@ export class CustomerMapScreen extends Component {
                               name="submit"
                               onPress={() => {
                                 this.setState({ modelshow: false });
-                                this.enableButton()
+                                this.enableButton();
                               }}
                             />
                           </View>

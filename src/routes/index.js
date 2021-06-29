@@ -5,6 +5,7 @@ import Routes from './routes';
 import SplashScreen from '../screen/SplashScreen';
 import NotAuthenticated from './NotAuthenticated';
 import Authenticated from './Authenticated';
+import boarding from './boarding';
 
 
 const Stack = createStackNavigator();
@@ -23,6 +24,7 @@ const RootNavigator = () => {
           component={NotAuthenticated}
         />
         <Stack.Screen name={Routes.Authenticated} component={Authenticated} />
+        <Stack.Screen name={Routes.boarding} component={boarding} />
       </Stack.Navigator>
     </NavigationContainer>
   );

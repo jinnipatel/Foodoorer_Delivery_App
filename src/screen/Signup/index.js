@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { CommonActions } from '@react-navigation/routers';
 import { View, SafeAreaView } from 'react-native';
 import { ImageComp, InputText, Label, Status } from '../../component/index';
 import { Button } from '../../component/index';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Animatable from 'react-native-animatable';
 import Routes from '../../routes/routes';
-import { validation, PasswordValidate } from '../../utils/ValidationUtils';
+import { validation } from '../../utils/ValidationUtils';
 import { Color } from '../../utils/Color';
 import LinearGradient from 'react-native-linear-gradient';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -14,9 +12,7 @@ import CommonStyles from '../../utils/CommonStyles';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { registerUserAction } from '../../redux/reducers/Signup/action'
-// // import { Snackbar } from 'react-native-paper'
-// import Snackbar from 'react-native-snackbar';
+import { registerUserAction } from '../../redux/reducers/Signup/action';
 
 class Signup extends Component {
   constructor(props) {
@@ -39,43 +35,19 @@ class Signup extends Component {
     };
   }
 
-
   SignUpUserRequest = async () => {
-    console.log('User Clicked');
-    // this.showMessage()
-    const { name, email, password, phoneNo, confirmPassword } = this.state;
     this.setState({ visibility: true }, () => {
-      console.log('~~~~~~~~~~~~~~~~~~~')
-      let param =
-      {
-        // name: this.props.name,
-        // email: this.props.email,
-        // phoneNo: this.props.phoneNo,
-        // password: this.props.password
+      let user = {
         name: this.state.name,
         email: this.state.email,
-        phoneNo: this.state.phoneNo,
+        contact_no: this.state.phoneNo,
         password: this.state.password,
-        confirmPassword: this.state.confirmPassword
-
-
-
-
+        password_confirmation: this.state.confirmPassword,
       };
-      debugger
-      this.props.registerUserAction(param, this.props,
-        // cbError = err => {
-        //   console.log(err)
-        // },
-        // cbSuccess = err => {
-        //   console.log("Hello World")
-
-        // }
-      );
+      debugger;
+      this.props.registerUserAction(user, this.props);
     });
-    // this.showMessage()
-    // this.props.navigation.dispatch(this.resetToAuth);
-  }
+  };
   check_validate = () => {
     let firstnamerror,
       emailError,
@@ -87,10 +59,7 @@ class Signup extends Component {
     emailError = validation('email', this.state.email);
     phoneErrorValidation = validation('phoneNo', this.state.phoneNo);
     passwordError = validation('password', this.state.password);
-    confirmpasswordError = PasswordValidate(
-      this.state.password,
-      this.state.confirmPassword,
-    );
+    // confirmpasswordError = PasswordValidate(this.state.password, this.state.confirmPassword);
     if (
       firstnamerror != null ||
       emailError != null ||
@@ -117,22 +86,9 @@ class Signup extends Component {
       isValid = true;
     }
     if (isValid) {
-      let obj = {
-        name: this.state.name,
-        email: this.state.email,
-        phoneNo: this.state.phoneNo,
-        password: this.state.password,
-        confirmPassword: this.state.confirmPassword,
-      };
-      // AsyncStorage.setItem('signup_data', JSON.stringify(obj));
-      // console.log("SignUp Obj", obj)
-      this.SignUpUserRequest()
+      this.SignUpUserRequest();
     }
   };
-  // resetToAuth = CommonActions.reset({
-  //   index: 0,
-  //   routes: [{ name: Routes.Authenticated }],
-  // });
 
   IconToggle = () => {
     this.state.isSecurePassword
@@ -145,17 +101,7 @@ class Signup extends Component {
       ? this.setState({ isConformPassword: false, toggleIcon1: 'eye' })
       : this.setState({ isConformPassword: true, toggleIcon1: 'eye-closed' });
   };
-
-  // showMessage = () => {
-  //   Snackbar.show({
-  //     text: 'SignUp Successfully',
-  //     duration: Snackbar.LENGTH_SHORT,
-  //   });
-  // };
-
   render() {
-    // let { user } = this.props.signup;
-    console.log(this.props.signup, "jjjjjronaldjjjjjjjj")
     return (
       <SafeAreaView style={CommonStyles.container}>
         <LinearGradient
@@ -198,7 +144,11 @@ class Signup extends Component {
                   </TouchableOpacity>
 
                   <View style={CommonStyles.bottom_border}>
-                    <Label large bolder align="center" color={Color.ACTIVE_COLOR}>
+                    <Label
+                      large
+                      bolder
+                      align="center"
+                      color={Color.ACTIVE_COLOR}>
                       SignUp
                     </Label>
                   </View>
@@ -267,14 +217,6 @@ class Signup extends Component {
                   <Label small color={Color.ERROR} ms={30}>
                     {this.state.confirmpasswordError}
                   </Label>
-                  {/* {this.state.confirmpasswordError != null ? (
-                      <Label small mt={5} mb={5} ms={30} color={Color.ERROR}>
-                        {this.state.confirmpasswordError===null?'Please enter confirm password':
-                    this.state.confirmpasswordError}
-                      </Label>
-                    ) : (
-                      <Label></Label>
-                    )} */}
                 </View>
                 <View style={{ marginTop: 10, paddingBottom: 10 }}>
                   <Button name="SignUp" onPress={() => this.check_validate()} />
@@ -288,10 +230,9 @@ class Signup extends Component {
   }
 }
 function mapStateToProps(state) {
-  console.log("----------", state)
   return {
-    signup: state.signup
-  }
+    signup: state.signup,
+  };
 }
 
 const mapDispatchToProps = dispatch =>
@@ -300,5 +241,5 @@ const mapDispatchToProps = dispatch =>
       registerUserAction,
     },
     dispatch,
-  )
+  );
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);

@@ -7,7 +7,7 @@
  * http://validatejs.org/
  */
 
-(function(exports, module, define) {
+(function (exports, module, define) {
   "use strict";
 
   // The main function that calls the validators specified by the constraints.
@@ -19,14 +19,14 @@
   //   - fullMessages (boolean) - If `true` (default) the attribute name is prepended to the error.
   //
   // Please note that the options are also passed to each validator.
-  var validate = function(attributes, constraints, options) {
+  var validate = function (attributes, constraints, options) {
     options = v.extend({}, v.options, options);
 
     var results = v.runValidations(attributes, constraints, options)
       , attr
       , validator;
 
-    if (results.some(function(r) { return v.isPromise(r.error); })) {
+    if (results.some(function (r) { return v.isPromise(r.error); })) {
       throw new Error("Use validate.async if you want support for promises");
     }
     return validate.processValidationResults(results, options);
@@ -38,8 +38,8 @@
   // Very much similar to underscore's extend.
   // The first argument is the target object and the remaining arguments will be
   // used as sources.
-  v.extend = function(obj) {
-    [].slice.call(arguments, 1).forEach(function(source) {
+  v.extend = function (obj) {
+    [].slice.call(arguments, 1).forEach(function (source) {
       for (var attr in source) {
         obj[attr] = source[attr];
       }
@@ -55,7 +55,7 @@
       minor: 13,
       patch: 1,
       metadata: null,
-      toString: function() {
+      toString: function () {
         var version = v.format("%{major}.%{minor}.%{patch}", v.version);
         if (!v.isEmpty(v.version.metadata)) {
           version += "+" + v.version.metadata;
@@ -77,7 +77,7 @@
     // Runs the validators specified by the constraints object.
     // Will return an array of the format:
     //     [{attribute: "<attribute name>", error: "<validation result>"}, ...]
-    runValidations: function(attributes, constraints, options) {
+    runValidations: function (attributes, constraints, options) {
       var results = []
         , attr
         , validatorName
@@ -105,7 +105,7 @@
           validator = v.validators[validatorName];
 
           if (!validator) {
-            error = v.format("Unknown validator %{name}", {name: validatorName});
+            error = v.format("Unknown validator %{name}", { name: validatorName });
             throw new Error(error);
           }
 
@@ -127,11 +127,11 @@
             attributes: attributes,
             options: validatorOptions,
             error: validator.call(validator,
-                value,
-                validatorOptions,
-                attr,
-                attributes,
-                options)
+              value,
+              validatorOptions,
+              attr,
+              attributes,
+              options)
           });
         }
       }
@@ -141,7 +141,7 @@
 
     // Takes the output from runValidations and converts it to the correct
     // output format.
-    processValidationResults: function(errors, options) {
+    processValidationResults: function (errors, options) {
       errors = v.pruneEmptyErrors(errors, options);
       errors = v.expandMultipleErrors(errors, options);
       errors = v.convertErrorMessages(errors, options);
@@ -161,10 +161,10 @@
     // This function will return a promise that is settled when all the
     // validation promises have been completed.
     // It can be called even if no validations returned a promise.
-    async: function(attributes, constraints, options) {
+    async: function (attributes, constraints, options) {
       options = v.extend({}, v.async.options, options);
 
-      var WrapErrors = options.wrapErrors || function(errors) {
+      var WrapErrors = options.wrapErrors || function (errors) {
         return errors;
       };
 
@@ -175,26 +175,26 @@
 
       var results = v.runValidations(attributes, constraints, options);
 
-      return new v.Promise(function(resolve, reject) {
-        v.waitForResults(results).then(function() {
+      return new v.Promise(function (resolve, reject) {
+        v.waitForResults(results).then(function () {
           var errors = v.processValidationResults(results, options);
           if (errors) {
             reject(new WrapErrors(errors, options, attributes, constraints));
           } else {
             resolve(attributes);
           }
-        }, function(err) {
+        }, function (err) {
           reject(err);
         });
       });
     },
 
-    single: function(value, constraints, options) {
+    single: function (value, constraints, options) {
       options = v.extend({}, v.single.options, options, {
         format: "flat",
         fullMessages: false
       });
-      return v({single: value}, {single: constraints}, options);
+      return v({ single: value }, { single: constraints }, options);
     },
 
     // Returns a promise that is resolved when all promises in the results array
@@ -202,20 +202,20 @@
     // never rejected.
     // This function modifies the input argument, it replaces the promises
     // with the value returned from the promise.
-    waitForResults: function(results) {
+    waitForResults: function (results) {
       // Create a sequence of all the results starting with a resolved promise.
-      return results.reduce(function(memo, result) {
+      return results.reduce(function (memo, result) {
         // If this result isn't a promise skip it in the sequence.
         if (!v.isPromise(result.error)) {
           return memo;
         }
 
-        return memo.then(function() {
-          return result.error.then(function(error) {
+        return memo.then(function () {
+          return result.error.then(function (error) {
             result.error = error || null;
           });
         });
-      }, new v.Promise(function(r) { r(); })); // A resolved promise
+      }, new v.Promise(function (r) { r(); })); // A resolved promise
     },
 
     // If the given argument is a call: function the and: function return the value
@@ -226,7 +226,7 @@
     // result('foo') // 'foo'
     // result(Math.max, 1, 2) // 2
     // ```
-    result: function(value) {
+    result: function (value) {
       var args = [].slice.call(arguments, 1);
       if (typeof value === 'function') {
         value = value.apply(null, args);
@@ -236,52 +236,52 @@
 
     // Checks if the value is a number. This function does not consider NaN a
     // number like many other `isNumber` functions do.
-    isNumber: function(value) {
+    isNumber: function (value) {
       return typeof value === 'number' && !isNaN(value);
     },
 
     // Returns false if the object is not a function
-    isFunction: function(value) {
+    isFunction: function (value) {
       return typeof value === 'function';
     },
 
     // A simple check to verify that the value is an integer. Uses `isNumber`
     // and a simple modulo check.
-    isInteger: function(value) {
+    isInteger: function (value) {
       return v.isNumber(value) && value % 1 === 0;
     },
 
     // Checks if the value is a boolean
-    isBoolean: function(value) {
+    isBoolean: function (value) {
       return typeof value === 'boolean';
     },
 
     // Uses the `Object` function to check if the given argument is an object.
-    isObject: function(obj) {
+    isObject: function (obj) {
       return obj === Object(obj);
     },
 
     // Simply checks if the object is an instance of a date
-    isDate: function(obj) {
+    isDate: function (obj) {
       return obj instanceof Date;
     },
 
     // Returns false if the object is `null` of `undefined`
-    isDefined: function(obj) {
+    isDefined: function (obj) {
       return obj !== null && obj !== undefined;
     },
 
     // Checks if the given argument is a promise. Anything with a `then`
     // function is considered a promise.
-    isPromise: function(p) {
+    isPromise: function (p) {
       return !!p && v.isFunction(p.then);
     },
 
-    isJqueryElement: function(o) {
+    isJqueryElement: function (o) {
       return o && v.isString(o.jquery);
     },
 
-    isDomElement: function(o) {
+    isDomElement: function (o) {
       if (!o) {
         return false;
       }
@@ -307,7 +307,7 @@
       }
     },
 
-    isEmpty: function(value) {
+    isEmpty: function (value) {
       var attr;
 
       // Null and undefined are empty
@@ -353,11 +353,11 @@
     // If you want to write %{...} without having it replaced simply
     // prefix it with % like this `Foo: %%{foo}` and it will be returned
     // as `"Foo: %{foo}"`
-    format: v.extend(function(str, vals) {
+    format: v.extend(function (str, vals) {
       if (!v.isString(str)) {
         return str;
       }
-      return str.replace(v.format.FORMAT_REGEXP, function(m0, m1, m2) {
+      return str.replace(v.format.FORMAT_REGEXP, function (m0, m1, m2) {
         if (m1 === '%') {
           return "%{" + m2 + "}";
         } else {
@@ -372,7 +372,7 @@
     // "Prettifies" the given string.
     // Prettifying means replacing [.\_-] with spaces as well as splitting
     // camel case words.
-    prettify: function(str) {
+    prettify: function (str) {
       if (v.isNumber(str)) {
         // If there are more than 2 decimals round it to two
         if ((str * 100) % 1 === 0) {
@@ -383,7 +383,7 @@
       }
 
       if (v.isArray(str)) {
-        return str.map(function(s) { return v.prettify(s); }).join(", ");
+        return str.map(function (s) { return v.prettify(s); }).join(", ");
       }
 
       if (v.isObject(str)) {
@@ -405,32 +405,32 @@
         // Replaces - and - with space
         .replace(/[_-]/g, ' ')
         // Splits camel cased words
-        .replace(/([a-z])([A-Z])/g, function(m0, m1, m2) {
+        .replace(/([a-z])([A-Z])/g, function (m0, m1, m2) {
           return "" + m1 + " " + m2.toLowerCase();
         })
         .toLowerCase();
     },
 
-    stringifyValue: function(value, options) {
+    stringifyValue: function (value, options) {
       var prettify = options && options.prettify || v.prettify;
       return prettify(value);
     },
 
-    isString: function(value) {
+    isString: function (value) {
       return typeof value === 'string';
     },
 
-    isArray: function(value) {
+    isArray: function (value) {
       return {}.toString.call(value) === '[object Array]';
     },
 
     // Checks if the object is a hash, which is equivalent to an object that
     // is neither an array nor a function.
-    isHash: function(value) {
+    isHash: function (value) {
       return v.isObject(value) && !v.isArray(value) && !v.isFunction(value);
     },
 
-    contains: function(obj, value) {
+    contains: function (obj, value) {
       if (!v.isDefined(obj)) {
         return false;
       }
@@ -440,16 +440,16 @@
       return value in obj;
     },
 
-    unique: function(array) {
+    unique: function (array) {
       if (!v.isArray(array)) {
         return array;
       }
-      return array.filter(function(el, index, array) {
+      return array.filter(function (el, index, array) {
         return array.indexOf(el) == index;
       });
     },
 
-    forEachKeyInKeypath: function(object, keypath, callback) {
+    forEachKeyInKeypath: function (object, keypath, callback) {
       if (!v.isString(keypath)) {
         return undefined;
       }
@@ -489,12 +489,12 @@
       return callback(object, key, true);
     },
 
-    getDeepObjectValue: function(obj, keypath) {
+    getDeepObjectValue: function (obj, keypath) {
       if (!v.isObject(obj)) {
         return undefined;
       }
 
-      return v.forEachKeyInKeypath(obj, keypath, function(obj, key) {
+      return v.forEachKeyInKeypath(obj, keypath, function (obj, key) {
         if (v.isObject(obj)) {
           return obj[key];
         }
@@ -507,7 +507,7 @@
     // <input type="text" name="email" value="foo@bar.com" />
     // would return:
     // {email: "foo@bar.com"}
-    collectFormValues: function(form, options) {
+    collectFormValues: function (form, options) {
       var values = {}
         , i
         , j
@@ -565,7 +565,7 @@
           value = [];
           for (j in input.options) {
             option = input.options[j];
-             if (option && option.selected) {
+            if (option && option.selected) {
               value.push(v.sanitizeFormValue(option.value, options));
             }
           }
@@ -579,7 +579,7 @@
       return values;
     },
 
-    sanitizeFormValue: function(value, options) {
+    sanitizeFormValue: function (value, options) {
       if (options.trim && v.isString(value)) {
         value = value.trim();
       }
@@ -590,7 +590,7 @@
       return value;
     },
 
-    capitalize: function(str) {
+    capitalize: function (str) {
       if (!v.isString(str)) {
         return str;
       }
@@ -598,8 +598,8 @@
     },
 
     // Remove all errors who's error attribute is empty (null or undefined)
-    pruneEmptyErrors: function(errors) {
-      return errors.filter(function(error) {
+    pruneEmptyErrors: function (errors) {
+      return errors.filter(function (error) {
         return !v.isEmpty(error.error);
       });
     },
@@ -611,13 +611,13 @@
     //
     // All attributes in an error with multiple messages are duplicated
     // when expanding the errors.
-    expandMultipleErrors: function(errors) {
+    expandMultipleErrors: function (errors) {
       var ret = [];
-      errors.forEach(function(error) {
+      errors.forEach(function (error) {
         // Removes errors without a message
         if (v.isArray(error.error)) {
-          error.error.forEach(function(msg) {
-            ret.push(v.extend({}, error, {error: msg}));
+          error.error.forEach(function (msg) {
+            ret.push(v.extend({}, error, { error: msg }));
           });
         } else {
           ret.push(error);
@@ -628,18 +628,18 @@
 
     // Converts the error mesages by prepending the attribute name unless the
     // message is prefixed by ^
-    convertErrorMessages: function(errors, options) {
+    convertErrorMessages: function (errors, options) {
       options = options || {};
 
       var ret = []
         , prettify = options.prettify || v.prettify;
-      errors.forEach(function(errorInfo) {
+      errors.forEach(function (errorInfo) {
         var error = v.result(errorInfo.error,
-            errorInfo.value,
-            errorInfo.attribute,
-            errorInfo.options,
-            errorInfo.attributes,
-            errorInfo.globalOptions);
+          errorInfo.value,
+          errorInfo.attribute,
+          errorInfo.options,
+          errorInfo.attributes,
+          errorInfo.globalOptions);
 
         if (!v.isString(error)) {
           ret.push(errorInfo);
@@ -655,7 +655,7 @@
         error = v.format(error, {
           value: v.stringifyValue(errorInfo.value, options)
         });
-        ret.push(v.extend({}, errorInfo, {error: error}));
+        ret.push(v.extend({}, errorInfo, { error: error }));
       });
       return ret;
     },
@@ -664,9 +664,9 @@
     // [{attribute: "<attributeName>", ...}]
     // Out:
     // {"<attributeName>": [{attribute: "<attributeName>", ...}]}
-    groupErrorsByAttribute: function(errors) {
+    groupErrorsByAttribute: function (errors) {
       var ret = {};
-      errors.forEach(function(error) {
+      errors.forEach(function (error) {
         var list = ret[error.attribute];
         if (list) {
           list.push(error);
@@ -681,15 +681,15 @@
     // [{error: "<message 1>", ...}, {error: "<message 2>", ...}]
     // Out:
     // ["<message 1>", "<message 2>"]
-    flattenErrorsToArray: function(errors) {
+    flattenErrorsToArray: function (errors) {
       return errors
-        .map(function(error) { return error.error; })
-        .filter(function(value, index, self) {
+        .map(function (error) { return error.error; })
+        .filter(function (value, index, self) {
           return self.indexOf(value) === index;
         });
     },
 
-    cleanAttributes: function(attributes, whitelist) {
+    cleanAttributes: function (attributes, whitelist) {
       function whitelistCreator(obj, key, last) {
         if (v.isObject(obj[key])) {
           return obj[key];
@@ -739,7 +739,7 @@
       return cleanRecursive(attributes, whitelist);
     },
 
-    exposeModule: function(validate, root, exports, module, define) {
+    exposeModule: function (validate, root, exports, module, define) {
       if (exports) {
         if (module && module.exports) {
           exports = module.exports = validate;
@@ -753,13 +753,13 @@
       }
     },
 
-    warn: function(msg) {
+    warn: function (msg) {
       if (typeof console !== "undefined" && console.warn) {
         console.warn("[validate.js] " + msg);
       }
     },
 
-    error: function(msg) {
+    error: function (msg) {
       if (typeof console !== "undefined" && console.error) {
         console.error("[validate.js] " + msg);
       }
@@ -768,13 +768,13 @@
 
   validate.validators = {
     // Presence validates that the value isn't empty
-    presence: function(value, options) {
+    presence: function (value, options) {
       options = v.extend({}, this.options, options);
       if (options.allowEmpty !== false ? !v.isDefined(value) : v.isEmpty(value)) {
         return options.message || this.message || "can't be blank";
       }
     },
-    length: function(value, options, attribute) {
+    length: function (value, options, attribute) {
       // Empty values are allowed
       if (!v.isDefined(value)) {
         return;
@@ -785,13 +785,13 @@
       var is = options.is
         , maximum = options.maximum
         , minimum = options.minimum
-        , tokenizer = options.tokenizer || function(val) { return val; }
+        , tokenizer = options.tokenizer || function (val) { return val; }
         , err
         , errors = [];
 
       value = tokenizer(value);
       var length = value.length;
-      if(!v.isNumber(length)) {
+      if (!v.isNumber(length)) {
         return options.message || this.notValid || "has an incorrect length";
       }
 
@@ -800,28 +800,28 @@
         err = options.wrongLength ||
           this.wrongLength ||
           "is the wrong length (should be %{count} characters)";
-        errors.push(v.format(err, {count: is}));
+        errors.push(v.format(err, { count: is }));
       }
 
       if (v.isNumber(minimum) && length < minimum) {
         err = options.tooShort ||
           this.tooShort ||
           "is too short (minimum is %{count} characters)";
-        errors.push(v.format(err, {count: minimum}));
+        errors.push(v.format(err, { count: minimum }));
       }
 
       if (v.isNumber(maximum) && length > maximum) {
         err = options.tooLong ||
           this.tooLong ||
           "is too long (maximum is %{count} characters)";
-        errors.push(v.format(err, {count: maximum}));
+        errors.push(v.format(err, { count: maximum }));
       }
 
       if (errors.length > 0) {
         return options.message || errors;
       }
     },
-    numericality: function(value, options, attribute, attributes, globalOptions) {
+    numericality: function (value, options, attribute, attributes, globalOptions) {
       // Empty values are fine
       if (!v.isDefined(value)) {
         return;
@@ -833,13 +833,13 @@
         , name
         , count
         , checks = {
-            greaterThan:          function(v, c) { return v > c; },
-            greaterThanOrEqualTo: function(v, c) { return v >= c; },
-            equalTo:              function(v, c) { return v === c; },
-            lessThan:             function(v, c) { return v < c; },
-            lessThanOrEqualTo:    function(v, c) { return v <= c; },
-            divisibleBy:          function(v, c) { return v % c === 0; }
-          }
+          greaterThan: function (v, c) { return v > c; },
+          greaterThanOrEqualTo: function (v, c) { return v >= c; },
+          equalTo: function (v, c) { return v === c; },
+          lessThan: function (v, c) { return v < c; },
+          lessThanOrEqualTo: function (v, c) { return v <= c; },
+          divisibleBy: function (v, c) { return v % c === 0; }
+        }
         , prettify = options.prettify ||
           (globalOptions && globalOptions.prettify) ||
           v.prettify;
@@ -906,22 +906,22 @@
 
       if (options.odd && value % 2 !== 1) {
         errors.push(options.notOdd ||
-            this.notOdd ||
-            this.message ||
-            "must be odd");
+          this.notOdd ||
+          this.message ||
+          "must be odd");
       }
       if (options.even && value % 2 !== 0) {
         errors.push(options.notEven ||
-            this.notEven ||
-            this.message ||
-            "must be even");
+          this.notEven ||
+          this.message ||
+          "must be even");
       }
 
       if (errors.length) {
         return options.message || errors;
       }
     },
-    datetime: v.extend(function(value, options) {
+    datetime: v.extend(function (value, options) {
       if (!v.isFunction(this.parse) || !v.isFunction(this.format)) {
         throw new Error("Both the parse and format functions needs to be set to use the datetime/date validator");
       }
@@ -947,7 +947,7 @@
           options.message ||
           this.notValid ||
           "must be a valid date";
-        return v.format(err, {value: arguments[0]});
+        return v.format(err, { value: arguments[0] });
       }
 
       if (!isNaN(earliest) && value < earliest) {
@@ -981,13 +981,13 @@
       parse: null,
       format: null
     }),
-    date: function(value, options) {
-      options = v.extend({}, options, {dateOnly: true});
+    date: function (value, options) {
+      options = v.extend({}, options, { dateOnly: true });
       return v.validators.datetime.call(v.validators.datetime, value, options);
     },
-    format: function(value, options) {
+    format: function (value, options) {
       if (v.isString(options) || (options instanceof RegExp)) {
-        options = {pattern: options};
+        options = { pattern: options };
       }
 
       options = v.extend({}, this.options, options);
@@ -1012,13 +1012,13 @@
         return message;
       }
     },
-    inclusion: function(value, options) {
+    inclusion: function (value, options) {
       // Empty values are fine
       if (!v.isDefined(value)) {
         return;
       }
       if (v.isArray(options)) {
-        options = {within: options};
+        options = { within: options };
       }
       options = v.extend({}, this.options, options);
       if (v.contains(options.within, value)) {
@@ -1027,15 +1027,15 @@
       var message = options.message ||
         this.message ||
         "^%{value} is not included in the list";
-      return v.format(message, {value: value});
+      return v.format(message, { value: value });
     },
-    exclusion: function(value, options) {
+    exclusion: function (value, options) {
       // Empty values are fine
       if (!v.isDefined(value)) {
         return;
       }
       if (v.isArray(options)) {
-        options = {within: options};
+        options = { within: options };
       }
       options = v.extend({}, this.options, options);
       if (!v.contains(options.within, value)) {
@@ -1045,9 +1045,9 @@
       if (v.isString(options.within[value])) {
         value = options.within[value];
       }
-      return v.format(message, {value: value});
+      return v.format(message, { value: value });
     },
-    email: v.extend(function(value, options) {
+    email: v.extend(function (value, options) {
       options = v.extend({}, this.options, options);
       var message = options.message || this.message || "is not a valid email";
       // Empty values are fine
@@ -1063,13 +1063,13 @@
     }, {
       PATTERN: /^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/i
     }),
-    equality: function(value, options, attribute, attributes, globalOptions) {
+    equality: function (value, options, attribute, attributes, globalOptions) {
       if (!v.isDefined(value)) {
         return;
       }
 
       if (v.isString(options)) {
-        options = {attribute: options};
+        options = { attribute: options };
       }
       options = v.extend({}, this.options, options);
       var message = options.message ||
@@ -1081,7 +1081,7 @@
       }
 
       var otherValue = v.getDeepObjectValue(attributes, options.attribute)
-        , comparator = options.comparator || function(v1, v2) {
+        , comparator = options.comparator || function (v1, v2) {
           return v1 === v2;
         }
         , prettify = options.prettify ||
@@ -1089,12 +1089,12 @@
           v.prettify;
 
       if (!comparator(value, otherValue, options, attribute, attributes)) {
-        return v.format(message, {attribute: prettify(options.attribute)});
+        return v.format(message, { attribute: prettify(options.attribute) });
       }
     },
     // A URL validator that is used to validate URLs with the ability to
     // restrict schemes and some domains.
-    url: function(value, options) {
+    url: function (value, options) {
       if (!v.isDefined(value)) {
         return;
       }
@@ -1132,33 +1132,33 @@
       }
 
       regex +=
-          // IP address dotted notation octets
-          // excludes loopback network 0.0.0.0
-          // excludes reserved space >= 224.0.0.0
-          // excludes network & broacast addresses
-          // (first & last IP address of each class)
-          "(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])" +
-          "(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}" +
-          "(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))" +
+        // IP address dotted notation octets
+        // excludes loopback network 0.0.0.0
+        // excludes reserved space >= 224.0.0.0
+        // excludes network & broacast addresses
+        // (first & last IP address of each class)
+        "(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])" +
+        "(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}" +
+        "(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))" +
         "|" +
-          // host name
-          "(?:(?:[a-z\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)" +
-          // domain name
-          "(?:\\.(?:[a-z\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)*" +
-          tld +
+        // host name
+        "(?:(?:[a-z\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)" +
+        // domain name
+        "(?:\\.(?:[a-z\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)*" +
+        tld +
         ")" +
         // port number
         "(?::\\d{2,5})?" +
         // resource path
         "(?:[/?#]\\S*)?" +
-      "$";
+        "$";
 
       if (allowDataUrl) {
         // RFC 2397
         var mediaType = "\\w+\\/[-+.\\w]+(?:;[\\w=]+)*";
         var urlchar = "[A-Za-z0-9-_.!~\\*'();\\/?:@&=+$,%]*";
-        var dataurl = "data:(?:"+mediaType+")?(?:;base64)?,"+urlchar;
-        regex = "(?:"+regex+")|(?:^"+dataurl+"$)";
+        var dataurl = "data:(?:" + mediaType + ")?(?:;base64)?," + urlchar;
+        regex = "(?:" + regex + ")|(?:^" + dataurl + "$)";
       }
 
       var PATTERN = new RegExp(regex, 'i');
@@ -1166,9 +1166,9 @@
         return message;
       }
     },
-    type: v.extend(function(value, originalOptions, attribute, attributes, globalOptions) {
+    type: v.extend(function (value, originalOptions, attribute, attributes, globalOptions) {
       if (v.isString(originalOptions)) {
-        originalOptions = {type: originalOptions};
+        originalOptions = { type: originalOptions };
       }
 
       if (!v.isDefined(value)) {
@@ -1204,11 +1204,11 @@
           message = message(value, originalOptions, attribute, attributes, globalOptions);
         }
 
-        return v.format(message, {attribute: v.prettify(attribute), type: type});
+        return v.format(message, { attribute: v.prettify(attribute), type: type });
       }
     }, {
       types: {
-        object: function(value) {
+        object: function (value) {
           return v.isObject(value) && !v.isArray(value);
         },
         array: v.isArray,
@@ -1223,9 +1223,9 @@
   };
 
   validate.formatters = {
-    detailed: function(errors) {return errors;},
+    detailed: function (errors) { return errors; },
     flat: v.flattenErrorsToArray,
-    grouped: function(errors) {
+    grouped: function (errors) {
       var attr;
 
       errors = v.groupErrorsByAttribute(errors);
@@ -1234,11 +1234,11 @@
       }
       return errors;
     },
-    constraint: function(errors) {
+    constraint: function (errors) {
       var attr;
       errors = v.groupErrorsByAttribute(errors);
       for (attr in errors) {
-        errors[attr] = errors[attr].map(function(result) {
+        errors[attr] = errors[attr].map(function (result) {
           return result.validator;
         }).sort();
       }
@@ -1248,6 +1248,6 @@
 
   validate.exposeModule(validate, this, exports, module, define);
 }).call(this,
-        typeof exports !== 'undefined' ? /* istanbul ignore next */ exports : null,
-        typeof module !== 'undefined' ? /* istanbul ignore next */ module : null,
-        typeof define !== 'undefined' ? /* istanbul ignore next */ define : null);
+  typeof exports !== 'undefined' ? /* istanbul ignore next */ exports : null,
+  typeof module !== 'undefined' ? /* istanbul ignore next */ module : null,
+  typeof define !== 'undefined' ? /* istanbul ignore next */ define : null);

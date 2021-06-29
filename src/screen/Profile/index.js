@@ -9,9 +9,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { validation } from '../../utils/ValidationUtils';
 import Icons from 'react-native-vector-icons/Ionicons';
 import Fontisto from 'react-native-vector-icons/Fontisto';
-
-
-
+import { connect } from 'react-redux';
 
 export class Profile extends Component {
   constructor(props) {
@@ -127,35 +125,37 @@ export class Profile extends Component {
             <Image
               source={require('../../assets/Img/profile_logo.png')}
               resizeMode="contain"
-              style={{ width: ThemeUtils.relativeWidth(30), height: ThemeUtils.relativeHeight(16), alignSelf: 'center', marginTop: 10 }}
+              style={{
+                width: ThemeUtils.relativeWidth(30),
+                height: ThemeUtils.relativeHeight(16),
+                alignSelf: 'center',
+                marginTop: 10,
+              }}
             />
-            <View
-              style={Styles.labelText}>
+            {/* <Icon name="camera" /> */}
+
+            <View style={Styles.labelText}>
               <Icons
                 name="person-outline"
                 size={25}
                 color={Color.PRIMARY_DARK}
               />
               <Label ms={20} small color={Color.BLACK}>
-                JOHN DON
+                {/* JOHN DON */}
+                {this.props.profile.name}
               </Label>
             </View>
-            <View
-              style={Styles.sectionline}
-            />
-            <View
-              style={Styles.labelText}>
+            <View style={Styles.sectionline} />
+            <View style={Styles.labelText}>
               <Fontisto name="email" size={20} color={Color.PRIMARY_DARK} />
               <Label ms={20} small color={Color.BLACK}>
-                XYZ@gmail.com
+                {/* XYZ@gmail.com */}
+                {this.props.profile.email}
               </Label>
             </View>
 
-            <View
-              style={Styles.sectionline}
-            />
-            <View
-              style={Styles.labelText}>
+            <View style={Styles.sectionline} />
+            <View style={Styles.labelText}>
               <Icons
                 name="md-phone-portrait-outline"
                 size={18}
@@ -163,14 +163,12 @@ export class Profile extends Component {
               />
               <Label ms={20} small color={Color.BLACK}>
                 {' '}
-                +91 98765 43219
+                {/* +91 98765 43219 */}
+                {this.props.profile.contact_no}
               </Label>
             </View>
-            <View
-              style={Styles.sectionline}
-            />
-            <View
-              style={Styles.labelText}>
+            <View style={Styles.sectionline} />
+            <View style={Styles.labelText}>
               <Icons
                 name="md-card-outline"
                 size={18}
@@ -180,11 +178,8 @@ export class Profile extends Component {
                 12456-12563-8936
               </Label>
             </View>
-            <View
-              style={Styles.sectionline}
-            />
-            <View
-              style={Styles.labelText}>
+            <View style={Styles.sectionline} />
+            <View style={Styles.labelText}>
               <Icons
                 name="md-card-outline"
                 size={18}
@@ -194,9 +189,7 @@ export class Profile extends Component {
                 GJ21AF5869
               </Label>
             </View>
-            <View
-              style={Styles.sectionline}
-            />
+            <View style={Styles.sectionline} />
           </View>
           <View style={{ marginTop: 20 }}>
             <Button
@@ -208,9 +201,15 @@ export class Profile extends Component {
           </View>
         </View>
       </SafeAreaView>
-
     );
   }
 }
 
-export default Profile;
+const mapStateToProps = state => {
+  console.log('***********************************', state.login.user);
+  return {
+    profile: state.login.user,
+  };
+};
+
+export default connect(mapStateToProps, null)(Profile);
