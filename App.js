@@ -42,11 +42,11 @@ const App = () => {
   return (
     <Provider store={store}>
 
-      {/* <PersistGate loading={null} persistor={persistor}> */}
-      <View style={{ flex: 1 }}>
-        <RootNavigator />
-      </View>
-      {/* </PersistGate> */}
+      <PersistGate loading={null} persistor={persistor}>
+        <View style={{ flex: 1 }}>
+          <RootNavigator />
+        </View>
+      </PersistGate>
     </Provider>
 
 

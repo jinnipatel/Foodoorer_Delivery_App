@@ -11,7 +11,7 @@ const registerReducer = (state = initial, action) => {
     debugger
     switch (action.type) {
         case types.REGISTER_USER_SUCCESS:
-            console.log("SIGNUP Reducer ", action)
+            // console.log("SIGNUP Reducer ", action)
             return {
                 ...state,
                 register: action.payload.data,

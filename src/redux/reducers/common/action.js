@@ -8,6 +8,7 @@ export const onBoardingDoneAction = (status) => {
 }
 
 export const logOutAction = () => {
+    console.log('logout')
     return {
         type: types.LOGOUT
     }

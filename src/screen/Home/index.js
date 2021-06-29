@@ -298,10 +298,10 @@ export class Home extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(
-    '====================UserData==================',
-    state.login.user,
-  );
+  // console.log(
+  //   '====================UserData==================',
+  //   state.login.user.token,
+  // );
   return {
     isOnboardingDone: state,
     profile: state.login.user,

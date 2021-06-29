@@ -9,8 +9,9 @@ import { connect } from 'react-redux';
 import { resetNavigation } from '../../utils/commonFunctions';
 
 const mapStateToProps = state => {
+  console.log("LOGIN Token ------------", state.login.token)
   return {
-    login: state.login.user,
+    token: state.login.token,
     common: state.common,
   };
 };
@@ -21,7 +22,9 @@ class SplashScreen extends React.Component {
   }
 
   checkAuthentication = async () => {
-    let _token = await AsyncStorage.getItem('token');
+
+    let _token = this.props.token
+    // let _token = await AsyncStorage.getItem('token');
     if (_token != null && _token != undefined && _token != '') {
       this.goTo(true);
     } else this.goTo(false);

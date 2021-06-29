@@ -15,11 +15,11 @@ export function* SignupUser(action) {
             params: action.payload.param,
             props: props,
         });
-        console.log('SIGN-UP SAGA RESULT', result);
+        // console.log('SIGN-UP SAGA RESULT', result);
         if (result.isSucess) {
             let message = result.Result.message;
             let data = result.Result.data;
-            console.log(data);
+            // console.log(data);
             AsyncStorage.setItem('userData', JSON.stringify(data));
             AsyncStorage.setItem('token', result.Result.data.token);
             yield put({ type: types.REGISTER_USER_SUCCESS, payload: data });

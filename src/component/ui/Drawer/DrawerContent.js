@@ -14,21 +14,31 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { logOutAction } from '../../../redux/reducers/common/action';
+import { resetNavigation } from '../../../utils/commonFunctions';
 
 export function DrawerContent(props) {
-  const resetStack = CommonActions.reset({
-    index: 0,
-    routes: [{ name: Routes.SplashScreen }],
-  });
-  const removeAuthentication = async () => {
-    try {
-      console.log('logout');
-      await AsyncStorage.removeItem('token');
-      props.navigation.dispatch(resetStack);
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  // const resetStack = CommonActions.reset({
+  //   index: 0,
+  //   routes: [{ name: Routes.SplashScreen }],
+  // });
+  // const removeAuthentication = async () => {
+  //   try {
+  //     console.log('logout');
+  //     // await AsyncStorage.removeItem('token');
+  //     this.props.logOutAction();
+  //     props.navigation.dispatch(resetStack);
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
+
+  logOut = () => {
+    props.logOutAction()
+    // resetNavigation(props.navigation, Routes.NotAuthenticated);
+    resetNavigation(props.navigation, Routes.NotAuthenticated)
+  }
+
+
   return (
     <View style={{ flex: 1, backgroundColor: Color.PRIMARY }}>
       <View
@@ -128,7 +138,7 @@ export function DrawerContent(props) {
             )}
             label="Log-Out"
             labelStyle={{ fontSize: 20, color: Color.PRIMARY_DARK }}
-            onPress={() => removeAuthentication()}
+            onPress={() => logOut()}
           />
         </Drawer.Section>
       </View>
@@ -138,8 +148,9 @@ export function DrawerContent(props) {
 
 const mapStateToProps = state => {
   return {
+
     profile: state.login.user,
-    login: state.login,
+    token: state.login.token,
   };
 };
 

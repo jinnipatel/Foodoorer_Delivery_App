@@ -18,14 +18,14 @@ export function* loginUser(action) {
             props: props,
         });
         debugger;
-        console.log('LOGIN -------', result);
+        // console.log('LOGIN -------', result);
         if (result.isSucess) {
             debugger;
             let message = result.Result.message;
-            let data = result.Result.data;
-            AsyncStorage.setItem('userData', JSON.stringify(data));
-            AsyncStorage.setItem('token', result.Result.data.token);
-            yield put({ type: types.LOGIN_USER_SUCCESS, payload: data });
+            // let data = result.Result.data;
+            // AsyncStorage.setItem('userData', JSON.stringify(data));
+            // AsyncStorage.setItem('token', result.Result.data.token);
+            yield put({ type: types.LOGIN_USER_SUCCESS, payload: result.Result });
             setTimeout(() => {
                 notifyMsg({ message: message });
                 resetNavigation(props.navigation, Routes.Authenticated);
